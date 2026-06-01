@@ -1,0 +1,114 @@
+{
+  "prices": {
+    "gold_usd": {
+      "value": 4518.7,
+      "prev": 4518.7,
+      "change": 0.0,
+      "change_pct": 0.0
+    },
+    "silver_usd": {
+      "value": 75.53,
+      "prev": 75.53,
+      "change": 0.0,
+      "change_pct": 0.0
+    },
+    "crude_wti": {
+      "value": 92.09,
+      "prev": 92.09,
+      "change": 0.0,
+      "change_pct": 0.0
+    },
+    "nifty50": {
+      "value": 23547.75,
+      "prev": 23547.75,
+      "change": 0.0,
+      "change_pct": 0.0
+    },
+    "sensex": {
+      "value": 74775.74,
+      "prev": 74775.74,
+      "change": 0.0,
+      "change_pct": 0.0
+    },
+    "inr_usd": {
+      "value": 94.98,
+      "prev": 96.05,
+      "change": -1.07,
+      "change_pct": -1.11
+    },
+    "dxy": {
+      "value": 99.17,
+      "prev": 99.17,
+      "change": 0.0,
+      "change_pct": 0.0
+    },
+    "us_10y": {
+      "value": 4.47,
+      "prev": 4.45,
+      "change": 0.02,
+      "change_pct": 0.45
+    },
+    "sp500": {
+      "value": 7614.12,
+      "prev": 7580.06,
+      "change": 34.06,
+      "change_pct": 0.45
+    },
+    "btc_usd": {
+      "value": 71496.43,
+      "prev": 73579.69,
+      "change": -2083.26,
+      "change_pct": -2.83
+    },
+    "nasdaq": {
+      "value": 27163.85,
+      "prev": 26972.62,
+      "change": 191.23,
+      "change_pct": 0.71
+    },
+    "nvda": {
+      "value": 224.33,
+      "prev": 211.14,
+      "change": 13.19,
+      "change_pct": 6.25
+    },
+    "msft": {
+      "value": 460.81,
+      "prev": 450.24,
+      "change": 10.57,
+      "change_pct": 2.35
+    },
+    "aapl": {
+      "value": 307.95,
+      "prev": 312.06,
+      "change": -4.11,
+      "change_pct": -1.32
+    },
+    "googl": {
+      "value": 377.25,
+      "prev": 380.34,
+      "change": -3.09,
+      "change_pct": -0.81
+    },
+    "meta": {
+      "value": 606.91,
+      "prev": 632.51,
+      "change": -25.6,
+      "change_pct": -4.05
+    },
+    "gold_silver_ratio": {
+      "value": 59.83,
+      "label": "Gold/Silver Ratio"
+    },
+    "nifty_gold_ratio": {
+      "value": 1.52,
+      "label": "Nifty/Gold Ratio"
+    },
+    "gold_inr_gram": {
+      "value": 15447.0,
+      "label": "Gold ₹/gram"
+    }
+  },
+  "updated_at": "2026-06-02 00:04:35 IST",
+  "source": "Yahoo Finance"
+}

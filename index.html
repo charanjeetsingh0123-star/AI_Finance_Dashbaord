@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master-Class Macro Analysis Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js" crossorigin></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:#09090b; font-family:'Inter',system-ui,sans-serif; color:#f4f4f5; -webkit-font-smoothing: antialiased; }
+
+    /* ── LIVE TICKER BAR ── */
+    #ticker-bar {
+      display:flex; align-items:center; gap:0;
+      background:rgba(9, 9, 11, 0.8); border-bottom:1px solid #1f1f2e;
+      padding:0 12px; height:36px; overflow-x:auto;
+      font-size:11px; font-variant-numeric:tabular-nums;
+      backdrop-filter: blur(12px);
+      position: relative; z-index: 100;
+    }
+    .tick-item {
+      display:flex; align-items:center; gap:6px;
+      padding:0 14px; border-right:1px solid #1f1f2e;
+      white-space:nowrap; flex-shrink:0;
+    }
+    .tick-item:last-child { border-right:none; }
+    .tick-label { color:#71717a; font-weight:600; font-size:10px; text-transform:uppercase; letter-spacing:.06em; }
+    .tick-val { color:#f4f4f5; font-weight:600; }
+    .tick-chg { font-weight:600; font-size:10px; }
+    .tick-up { color:#10b981; }
+    .tick-dn { color:#ef4444; }
+    .tick-flat { color:#71717a; }
+    .tick-status {
+      margin-left:auto; display:flex; align-items:center; gap:6px;
+      color:#71717a; font-size:10px; padding:0 8px; flex-shrink:0;
+      font-weight: 500;
+    }
+    .tick-dot { width:6px; height:6px; border-radius:50%; background:#10b981; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+    .blink { animation: blink 1s infinite; color: #ef4444; }
+
+    /* ── MAIN LAYOUT ── */
+    #main-layout { display:flex; height:calc(100vh - 36px); }
+    #dashboard-area { flex:1; overflow-y:auto; display:flex; flex-direction:column; }
+    #news-panel {
+      width:320px; flex-shrink:0; border-left:1px solid #1f1f2e;
+      background:#0a0a0c; overflow-y:auto; display:flex; flex-direction:column;
+    }
+
+    /* ── NAV TABS ── */
+    nav {
+      display:flex; background:rgba(9, 9, 11, 0.6); padding:10px 20px; gap:8px;
+      border-bottom:1px solid #1f1f2e; flex-wrap:wrap; flex-shrink:0;
+      backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50;
+    }
+    .tab-btn {
+      background:transparent; border:1px solid transparent; color:#a1a1aa;
+      padding:6px 14px; border-radius:6px; cursor:pointer; font-weight:500;
+      font-size:12px; transition:all .2s ease; font-family:inherit;
+    }
+    .tab-btn:hover { color:#fff; background:rgba(255,255,255,0.05); }
+    .tab-btn.active { background:#27272a; color:#fff; border-color:#3f3f46; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+
+    /* ── NEWS PANEL ── */
+    .news-header {
+      padding:16px 20px; border-bottom:1px solid #1f1f2e;
+      display:flex; justify-content:space-between; align-items:center;
+      flex-shrink:0; background:rgba(9, 9, 11, 0.95); position: sticky; top: 0; z-index: 10;
+    }
+    .news-header h3 { font-size:13px; font-weight:600; color:#e4e4e7; letter-spacing: .02em; }
+    .news-header span { font-size:10px; color:#52525b; font-variant-numeric: tabular-nums; }
+    .news-item {
+      padding:14px 20px; border-bottom:1px solid #141418;
+      transition:background .15s; cursor:pointer;
+    }
+    .news-item:hover { background:#121216; }
+    .news-title { font-size:12px; font-weight:500; color:#d4d4d8; line-height:1.5; margin-bottom:6px; }
+    .news-meta { font-size:10px; color:#52525b; display:flex; gap:8px; align-items: center; }
+    .news-tag {
+      font-size:9px; padding:2px 8px; border-radius:12px; font-weight: 600;
+      background:rgba(56, 189, 248, 0.1); color:#38bdf8; border:1px solid rgba(56, 189, 248, 0.2);
+    }
+    .news-empty { padding:40px 20px; text-align:center; color:#52525b; font-size:12px; }
+
+    /* ── LOADING ── */
+    #loading { padding:60px; text-align:center; color:#71717a; font-size: 13px; font-weight: 500; }
+    #root { flex:1; overflow-y:auto; display:flex; flex-direction:column; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width:6px; height:6px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:#27272a; border-radius:10px; }
+    ::-webkit-scrollbar-thumb:hover { background:#3f3f46; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:900px) {
+      #news-panel { display:none; }
+      nav { padding: 10px; }
+    }
+  </style>
+
+  <script>
+    // ── Lucide Icon Shims ──
+    (function(){
+      const h = React.createElement;
+      function makeIcon(pathD) {
+        return function(props) {
+          const sz = props.size||16;
+          const st = Object.assign({display:'inline-block',verticalAlign:'middle'},props.style||{});
+          return h('svg',{xmlns:'http://www.w3.org/2000/svg',width:sz,height:sz,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:2,strokeLinecap:'round',strokeLinejoin:'round',style:st,className:props.className||''},h('path',{d:pathD}));
+        };
+      }
+      window.LucideIcons = {
+        TrendingDown:makeIcon('M22 17l-5-5-4 4-6-6M2 17l0 0'),
+        TrendingUp:makeIcon('M22 7l-5 5-4-4-6 6M2 7l0 0'),
+        RefreshCw:makeIcon('M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15'),
+        AlertCircle:makeIcon('M12 2a10 10 0 100 20 10 10 0 000-20zM12 8v4M12 16h.01'),
+        BarChart3:makeIcon('M18 20V10M12 20V4M6 20v-6'),
+        Shield:makeIcon('M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'),
+        Wallet:makeIcon('M21 12V7H5a2 2 0 010-4h14v4M3 5v14a2 2 0 002 2h16v-5M18 12a1 1 0 100 2 1 1 0 000-2z'),
+        ChevronUp:makeIcon('M18 15l-6-6-6 6'),
+        ChevronDown:makeIcon('M6 9l6 6 6-6'),
+        Users:makeIcon('M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75'),
+        Database:makeIcon('M12 2C6.48 2 2 4.02 2 6.5v11C2 19.98 6.48 22 12 22s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2z'),
+        Coins:makeIcon('M12 2a10 10 0 100 20 10 10 0 000-20z'),
+        Clock:makeIcon('M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2'),
+        Activity:makeIcon('M22 12h-4l-3 9L9 3l-3 9H2'),
+        ArrowUpRight:makeIcon('M7 17L17 7M7 7h10v10'),
+        ArrowDownRight:makeIcon('M7 7l10 10M17 7v10H7'),
+        Landmark:makeIcon('M3 22h18M6 18V9M10 18V9M14 18V9M18 18V9M12 2L2 7h20L12 2z'),
+      };
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ═══ LIVE TICKER BAR ═══ -->
+  <div id="ticker-bar">
+    <div class="tick-item" id="t-loading"><span class="tick-label">Loading live data...</span></div>
+  </div>
+
+  <!-- ═══ MAIN LAYOUT ═══ -->
+  <div id="main-layout">
+    <!-- LEFT: Dashboard -->
+    <div id="dashboard-area">
+      <nav id="nav-tabs"></nav>
+      <div id="root"><div id="loading">Select a dashboard…</div></div>
+    </div>
+
+    <!-- RIGHT: News Panel -->
+    <div id="news-panel">
+      <div class="news-header">
+        <h3>📰 Live News</h3>
+        <span id="news-updated">—</span>
+      </div>
+      <div id="news-list"><div class="news-empty">Fetching headlines…</div></div>
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════
+    // TICKER — auto-refresh every 30s
+    // ═══════════════════════════════════════════
+    const TICKER_ITEMS = [
+      {key:'gold_usd',    label:'Gold',    prefix:'$'},
+      {key:'silver_usd',  label:'Silver',  prefix:'$'},
+      {key:'crude_wti',   label:'WTI Oil', prefix:'$'},
+      {key:'nifty50',     label:'Nifty',   prefix:''},
+      {key:'sensex',      label:'Sensex',  prefix:''},
+      {key:'inr_usd',     label:'INR/USD', prefix:'₹'},
+      {key:'sp500',       label:'S&P500',  prefix:''},
+      {key:'dxy',         label:'DXY',     prefix:''},
+      {key:'us_10y',      label:'US10Y',   prefix:'', suffix:'%'},
+      {key:'gold_silver_ratio', label:'G/S Ratio', prefix:''},
+      {key:'nifty_gold_ratio',  label:'N/G Ratio', prefix:''},
+      {key:'gold_inr_gram',     label:'Gold₹/g',   prefix:'₹'},
+      {key:'btc_usd',     label:'BTC',     prefix:'$'},
+    ];
+
+    let _liveData = null;
+
+    function updateTicker(data) {
+      _liveData = data;
+      const bar = document.getElementById('ticker-bar');
+      if (!data || !data.prices) {
+        bar.innerHTML = '<div class="tick-item"><span class="tick-label">No data yet — fetching…</span></div>';
+        return;
+      }
+      let html = '';
+      TICKER_ITEMS.forEach(t => {
+        const p = data.prices[t.key];
+        if (!p) return;
+        const val = p.value;
+        const chg = p.change_pct || 0;
+        const cls = chg > 0 ? 'tick-up' : chg < 0 ? 'tick-dn' : 'tick-flat';
+        const arrow = chg > 0 ? '▲' : chg < 0 ? '▼' : '–';
+        const fmtVal = val >= 10000 ? Math.round(val).toLocaleString() : val.toLocaleString(undefined, {maximumFractionDigits:2});
+        html += `<div class="tick-item">
+          <span class="tick-label">${t.label}</span>
+          <span class="tick-val">${t.prefix||''}${fmtVal}${t.suffix||''}</span>
+          <span class="tick-chg ${cls}">${arrow} ${Math.abs(chg).toFixed(2)}%</span>
+        </div>`;
+      });
+      html += `<div class="tick-status">
+        <span class="tick-dot"></span>
+        <span>Updated: ${data.updated_at || '—'}</span>
+        <button onclick="forceRefresh()" style="background:#1a1a1a;border:1px solid #27272a;color:#a1a1aa;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:10px;margin-left:6px;">⟳ Refresh</button>
+      </div>`;
+      bar.innerHTML = html;
+    }
+
+    function fetchTicker() {
+      fetch('/api/live').then(r=>r.json()).then(updateTicker).catch(()=>{});
+    }
+    fetchTicker();
+    setInterval(fetchTicker, 30000);
+
+    function forceRefresh() {
+      fetch('/api/refresh').then(()=>{
+        setTimeout(fetchTicker, 3000);
+        setTimeout(fetchNews, 3000);
+      });
+    }
+
+    // ═══════════════════════════════════════════
+    // NEWS PANEL — auto-refresh every 5 min
+    // ═══════════════════════════════════════════
+    function fetchNews() {
+      fetch('/api/news').then(r=>r.json()).then(data => {
+        const list = document.getElementById('news-list');
+        const upd = document.getElementById('news-updated');
+        if (!data || !data.items || data.items.length === 0) {
+          list.innerHTML = '<div class="news-empty">No news yet…</div>';
+          return;
+        }
+        upd.textContent = data.updated_at || '';
+        let html = '';
+        data.items.forEach(item => {
+          html += `<div class="news-item" onclick="window.open('${item.link}','_blank')">
+            <div class="news-title">${item.title}</div>
+            <div class="news-meta">
+              <span>${item.source}</span>
+              <span>${item.published}</span>
+              <span class="news-tag">${item.query}</span>
+            </div>
+          </div>`;
+        });
+        list.innerHTML = html;
+      }).catch(()=>{});
+    }
+    fetchNews();
+    setInterval(fetchNews, 300000);
+
+    // ═══════════════════════════════════════════
+    // DASHBOARD TABS — same as before
+    // ═══════════════════════════════════════════
+    const tabs = [
+      {id:'MainDashboard',           label:'Dashboard',          exportName:'MainDashboard'},
+      {id:'MasterMacroAnalysis',     label:'Master Macro',       exportName:'MasterAnalysis'},
+      {id:'MacroChainAnalysis2026',  label:'Macro Chain 2026',   exportName:'ChainAnalysis'},
+      {id:'FamilyStockScorecard',    label:'Stock Scorecard',    exportName:'Scorecard'},
+      {id:'FamilyScorecard2030',     label:'Scorecard 2030',     exportName:'Scorecard2030'},
+      {id:'FamilyPortfolioDashboard',label:'Family Portfolio',   exportName:'FamilyPortfolioDashboard'},
+    ];
+
+    const nav = document.getElementById('nav-tabs');
+    const rootEl = document.getElementById('root');
+
+    tabs.forEach((tab,i) => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn';
+      btn.innerText = tab.label;
+      btn.dataset.idx = i;
+      btn.onclick = () => loadTab(i);
+      nav.appendChild(btn);
+    });
+    loadTab(0);
+
+    function loadTab(idx) {
+      const tab = tabs[idx];
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.idx) === idx);
+      });
+      rootEl.innerHTML = '<div id="loading">Loading ' + tab.label + '…</div>';
+
+      fetch(tab.id + '.jsx')
+        .then(r => { if (!r.ok) throw new Error('File not found: ' + tab.id + '.jsx'); return r.text(); })
+        .then(code => {
+          let cleaned = code
+            .replace(/import\s+\{[^}]*\}\s+from\s+["']react["'];?\s*/g, '')
+            .replace(/import\s+\{[^}]*\}\s+from\s+["']recharts["'];?\s*/g, '')
+            .replace(/import\s+\{[^}]*\}\s+from\s+["']lucide-react["'];?\s*/g, '');
+          cleaned = cleaned.replace(
+            /export\s+default\s+function\s+([A-Za-z0-9_]+)/,
+            'window.__COMP = function $1'
+          );
+          const shim = [
+            'const { useState, useEffect, useCallback, useRef, useMemo } = React;',
+            'const { ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, BarChart, Bar, PieChart, Pie, Cell, Legend, AreaChart, Area, LineChart, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Treemap } = (typeof Recharts !== "undefined" ? Recharts : {});',
+            'const { TrendingDown, TrendingUp, RefreshCw, AlertCircle, BarChart3, Shield, Wallet, ChevronUp, ChevronDown, Users, Database, Coins, Clock, Activity, ArrowUpRight, ArrowDownRight, Landmark } = (window.LucideIcons || {});',
+          ].join('\n');
+
+          const wrappedCode = '(function(){\n' + shim + '\n' + cleaned + '\n})();';
+          const compiled = Babel.transform(wrappedCode, { presets:['react'] }).code;
+          const old = document.getElementById('dyn-script');
+          if (old) old.remove();
+          const s = document.createElement('script');
+          s.id = 'dyn-script';
+          s.text = compiled;
+          document.body.appendChild(s);
+
+          rootEl.innerHTML = '<div id="mount"></div>';
+          if (window._root) window._root.unmount();
+          window._root = ReactDOM.createRoot(document.getElementById('mount'));
+          if (window.__COMP) {
+            window._root.render(React.createElement(window.__COMP));
+          } else {
+            throw new Error('Component not exported.');
+          }
+        })
+        .catch(err => {
+          rootEl.innerHTML = '<div id="loading" style="color:#ef4444;">Error: ' + err.message + '</div>';
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>

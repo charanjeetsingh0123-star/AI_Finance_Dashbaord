@@ -1,0 +1,41 @@
+[
+  {
+    "date": "2026-06-01",
+    "gold_usd": 4593.0,
+    "silver_usd": 75.88,
+    "crude_wti": 87.36,
+    "nifty50": 23547.75,
+    "sensex": 74775.74,
+    "inr_usd": 94.99,
+    "dxy": 98.91,
+    "us_10y": 4.45,
+    "sp500": 7580.06,
+    "btc_usd": 73553.77,
+    "nasdaq": 26972.62,
+    "gold_silver_ratio": 60.53,
+    "nifty_gold_ratio": 1.68,
+    "gold_inr_gram": 14027.0
+  },
+  {
+    "date": "2026-06-02",
+    "gold_usd": 4518.7,
+    "silver_usd": 75.53,
+    "crude_wti": 92.09,
+    "nifty50": 23547.75,
+    "sensex": 74775.74,
+    "inr_usd": 94.98,
+    "dxy": 99.17,
+    "us_10y": 4.47,
+    "sp500": 7614.12,
+    "btc_usd": 71496.43,
+    "nasdaq": 27163.85,
+    "nvda": 224.33,
+    "msft": 460.81,
+    "aapl": 307.95,
+    "googl": 377.25,
+    "meta": 606.91,
+    "gold_silver_ratio": 59.83,
+    "nifty_gold_ratio": 1.52,
+    "gold_inr_gram": 15447.0
+  }
+]
