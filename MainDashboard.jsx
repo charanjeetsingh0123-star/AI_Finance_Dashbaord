@@ -41,53 +41,126 @@ export default function MainDashboard() {
   const [live, setLive] = useState(null);
   const [news, setNews] = useState([]);
   const [projTab, setProjTab] = useState("Gold");
+  const [scenario, setScenario] = useState("Base");
 
-  const PROJECTIONS = {
-    Gold: [
-      { h: "1-Week", t: "$4,620", d: "DXY wane", c: "" },
-      { h: "1-Month", t: "$4,850", d: "Warsh fear", c: "" },
-      { h: "3-Month", t: "$5,100", d: "Stagflation", c: "" },
-      { h: "1-Year", t: "$5,500", d: "Rates roll", c: "" },
-      { h: "2030 (5-Yr)", t: "$6.5K–8K", d: "Debt Spiral", c: C.gold }
-    ],
-    Silver: [
-      { h: "1-Week", t: "$52", d: "Gold momentum", c: "" },
-      { h: "1-Month", t: "$58", d: "Industrial squeeze", c: "" },
-      { h: "3-Month", t: "$65", d: "Solar demand", c: "" },
-      { h: "1-Year", t: "$80", d: "Deficit peak", c: "" },
-      { h: "2030 (5-Yr)", t: "$120–150", d: "Electrification", c: C.blue }
-    ],
-    Nifty50: [
-      { h: "1-Week", t: "23,800", d: "FII buying", c: "" },
-      { h: "1-Month", t: "24,500", d: "Earnings growth", c: "" },
-      { h: "3-Month", t: "25,200", d: "Rate cut prep", c: "" },
-      { h: "1-Year", t: "28,000", d: "Capex cycle", c: "" },
-      { h: "2030 (5-Yr)", t: "38K–45K", d: "India Decade", c: C.cyan }
-    ],
-    Nifty500: [
-      { h: "1-Week", t: "22,500", d: "Midcap bounce", c: "" },
-      { h: "1-Month", t: "23,100", d: "Domestic flows", c: "" },
-      { h: "3-Month", t: "24,000", d: "Retail SIPs", c: "" },
-      { h: "1-Year", t: "26,500", d: "Broad recovery", c: "" },
-      { h: "2030 (5-Yr)", t: "40K–48K", d: "Formalization", c: C.green }
-    ],
-    Nasdaq: [
-      { h: "1-Week", t: "18,200", d: "Tech earnings", c: "" },
-      { h: "1-Month", t: "18,800", d: "AI momentum", c: "" },
-      { h: "3-Month", t: "19,500", d: "Soft landing", c: "" },
-      { h: "1-Year", t: "21,000", d: "Fed cuts", c: "" },
-      { h: "2030 (5-Yr)", t: "28K–35K", d: "AGI adoption", c: C.purple }
-    ]
+  const SCENARIOS = {
+    Base: {
+      Gold: [
+        { h: "1-Week", t: "$4,620", d: "DXY wane" },
+        { h: "1-Month", t: "$4,850", d: "Warsh fear" },
+        { h: "3-Month", t: "$5,100", d: "Stagflation" },
+        { h: "1-Year", t: "$5,500", d: "Rates roll" },
+        { h: "2030 (5-Yr)", t: "$6,500", d: "Debt Spiral", c: C.gold }
+      ],
+      Silver: [
+        { h: "1-Week", t: "$52.00", d: "Gold momentum" },
+        { h: "1-Month", t: "$58.00", d: "Ind. squeeze" },
+        { h: "3-Month", t: "$65.00", d: "Solar demand" },
+        { h: "1-Year", t: "$80.00", d: "Deficit peak" },
+        { h: "2030 (5-Yr)", t: "$110.00", d: "Electrification", c: C.blue }
+      ],
+      Nifty50: [
+        { h: "1-Week", t: "23,800", d: "FII buying" },
+        { h: "1-Month", t: "24,500", d: "Earnings growth" },
+        { h: "3-Month", t: "25,200", d: "Rate cut prep" },
+        { h: "1-Year", t: "28,000", d: "Capex cycle" },
+        { h: "2030 (5-Yr)", t: "38,000", d: "India Decade", c: C.cyan }
+      ],
+      Nifty500: [
+        { h: "1-Week", t: "22,500", d: "Midcap bounce" },
+        { h: "1-Month", t: "23,100", d: "Domestic flows" },
+        { h: "3-Month", t: "24,000", d: "Retail SIPs" },
+        { h: "1-Year", t: "26,500", d: "Broad recovery" },
+        { h: "2030 (5-Yr)", t: "32,000", d: "Formalization", c: C.green }
+      ],
+      Nasdaq: [
+        { h: "1-Week", t: "18,200", d: "Tech earnings" },
+        { h: "1-Month", t: "18,800", d: "AI momentum" },
+        { h: "3-Month", t: "19,500", d: "Soft landing" },
+        { h: "1-Year", t: "21,000", d: "Fed cuts" },
+        { h: "2030 (5-Yr)", t: "30,000", d: "AGI adoption", c: C.purple }
+      ]
+    },
+    Bull: {
+      Gold: [
+        { h: "1-Week", t: "$4,700", d: "Liquidity build" },
+        { h: "1-Month", t: "$5,000", d: "Fiat flight" },
+        { h: "3-Month", t: "$5,300", d: "CB panic buying" },
+        { h: "1-Year", t: "$6,000", d: "Debt spiral acceleration" },
+        { h: "2030 (5-Yr)", t: "$8,500", d: "Stagflation hedge", c: C.gold }
+      ],
+      Silver: [
+        { h: "1-Week", t: "$55.00", d: "Industrial panic" },
+        { h: "1-Month", t: "$62.00", d: "Supply shortage" },
+        { h: "3-Month", t: "$72.00", d: "Solar solarization" },
+        { h: "1-Year", t: "$95.00", d: "Green grid panic" },
+        { h: "2030 (5-Yr)", t: "$150.00", d: "Metal deficit peak", c: C.blue }
+      ],
+      Nifty50: [
+        { h: "1-Week", t: "24,200", d: "SIP record surge" },
+        { h: "1-Month", t: "25,600", d: "Foreign flows back" },
+        { h: "3-Month", t: "27,000", d: "Monsoon surprise" },
+        { h: "1-Year", t: "32,000", d: "GDP outperformance" },
+        { h: "2030 (5-Yr)", t: "50,000", d: "SIP cushioning", c: C.cyan }
+      ],
+      Nifty500: [
+        { h: "1-Week", t: "23,000", d: "Retail FOMO" },
+        { h: "1-Month", t: "24,400", d: "Midcap expansion" },
+        { h: "3-Month", t: "25,800", d: "Earnings upgrades" },
+        { h: "1-Year", t: "30,500", d: "Credit expansion" },
+        { h: "2030 (5-Yr)", t: "45,000", d: "India formalization", c: C.green }
+      ],
+      Nasdaq: [
+        { h: "1-Week", t: "18,700", d: "AI revenue spike" },
+        { h: "1-Month", t: "19,800", d: "Fed cuts early" },
+        { h: "3-Month", t: "21,200", d: "Buybacks expand" },
+        { h: "1-Year", t: "24,500", d: "Nvidia 3T market cap" },
+        { h: "2030 (5-Yr)", t: "42,000", d: "AGI commercialized", c: C.purple }
+      ]
+    },
+    Bear: {
+      Gold: [
+        { h: "1-Week", t: "$4,500", d: "DXY safe haven" },
+        { h: "1-Month", t: "$4,300", d: "Deflation threat" },
+        { h: "3-Month", t: "$4,000", d: "Liquidations spike" },
+        { h: "1-Year", t: "$3,500", d: "Cash preference" },
+        { h: "2030 (5-Yr)", t: "$2,500", d: "Commodity collapse", c: C.gold }
+      ],
+      Silver: [
+        { h: "1-Week", t: "$48.00", d: "Industrial demand drop" },
+        { h: "1-Month", t: "$42.00", d: "Margin liquidation" },
+        { h: "3-Month", t: "$38.00", d: "Industrial recession" },
+        { h: "1-Year", t: "$32.00", d: "Capex freeze" },
+        { h: "2030 (5-Yr)", t: "$30.00", d: "Demand contraction", c: C.blue }
+      ],
+      Nifty50: [
+        { h: "1-Week", t: "23,000", d: "Tariff shock" },
+        { h: "1-Month", t: "21,500", d: "Oil premium shock" },
+        { h: "3-Month", t: "20,000", d: "FII capitulation" },
+        { h: "1-Year", t: "18,500", d: "INR depreciation" },
+        { h: "2030 (5-Yr)", t: "16,500", d: "Insolvency wave", c: C.cyan }
+      ],
+      Nifty500: [
+        { h: "1-Week", t: "21,800", d: "Midcap bubble pop" },
+        { h: "1-Month", t: "20,200", d: "Leverage unwinding" },
+        { h: "3-Month", t: "18,500", d: "SIP pause" },
+        { h: "1-Year", t: "16,200", d: "Credit crunch" },
+        { h: "2030 (5-Yr)", t: "13,000", d: "Midcap failures", c: C.green }
+      ],
+      Nasdaq: [
+        { h: "1-Week", t: "17,800", d: "Multiple contraction" },
+        { h: "1-Month", t: "16,500", d: "WACC rises to 9%" },
+        { h: "3-Month", t: "15,200", d: "AI Capex cuts" },
+        { h: "1-Year", t: "14,000", d: "Refinancing wall defaults" },
+        { h: "2030 (5-Yr)", t: "18,500", d: "Valuation compression", c: C.purple }
+      ]
+    }
   };
 
   useEffect(() => {
     (window.smartFetch || fetch)("/api/live")
       .then(r => r.json())
       .then(d => { if (d && d.prices) setLive(d.prices); })
-      .catch(() => {});
-    (window.smartFetch || fetch)("/api/news")
-      .then(r => r.json())
-      .then(d => { if (d && d.items) setNews(d.items.slice(0, 5)); })
       .catch(() => {});
   }, []);
 
@@ -137,8 +210,9 @@ export default function MainDashboard() {
             <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase", marginBottom: 6 }}>Latest Related Indicators</p>
             <table style={{ width: "100%", fontSize: 10, borderCollapse: "collapse" }}>
               <tbody>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>US Total Debt</td><td style={{ textAlign: "right", fontWeight: 600 }}>$36.2T (Fiscal Dominance)</td></tr>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>China Flow</td><td style={{ textAlign: "right", fontWeight: 600 }}>Dumping Treasury, Buying Gold</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Buffett Indicator</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>237.8% (Significantly Overvalued)</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Yield Curve Normalization</td><td style={{ textAlign: "right", fontWeight: 600, color: C.amber }}>+0.47% (Recession Warning: 5-19mo)</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Russell 2000 Refi Wall</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>$368B (41% Zombie Companies)</td></tr>
                 <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Trump Tariff Factor</td><td style={{ textAlign: "right", fontWeight: 600, color: C.amber }}>Max Tariffs Threat</td></tr>
                 <tr><td style={{ padding: "4px 0", color: C.t3 }}>War Premium</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>Hormuz blockage risk 15%</td></tr>
               </tbody>
@@ -148,12 +222,12 @@ export default function MainDashboard() {
 
         {/* SECTION 2: Gold Statistical Analysis & Technicals */}
         <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 16 }}>
-          <h2 style={{ fontSize: 13, fontWeight: 700, color: C.purple, borderBottom: `1px solid ${C.border}`, paddingBottom: 6, marginBottom: 12 }}>🥇 Gold Projection Model</h2>
+          <h2 style={{ fontSize: 13, fontWeight: 700, color: C.purple, borderBottom: `1px solid ${C.border}`, paddingBottom: 6, marginBottom: 12 }}>🥇 Gold & Index Projection Model</h2>
           
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 14 }}>
             <StatCard title="Gold Spot" val={`$${goldVal}`} sub="Base support: $4,100" />
             <StatCard title="Gold/Silver Ratio" val={gsRatio} sub="Under 60 = Silver outruns" />
-            <StatCard title="Nifty/Gold Ratio" val={ngRatio} sub="10Y low = Nifty cheapest" />
+            <StatCard title="Nifty/Gold Ratio" val={ngRatio} sub="1.48 = Nifty dropped" />
             <StatCard title="CB Flow Q1" val="244 tonnes" sub="Govt Reserves Flow" />
           </div>
 
@@ -169,10 +243,25 @@ export default function MainDashboard() {
           </div>
 
           <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 8, padding: 10 }}>
+            {/* Scenario selector */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, background: "rgba(255,255,255,0.02)", padding: "4px 8px", borderRadius: 8, border: `1px solid ${C.border}` }}>
+              <span style={{ fontSize: 9, fontWeight: 700, color: C.t3, textTransform: "uppercase" }}>Scenario</span>
+              <div style={{ display: "flex", gap: 4 }}>
+                {["Base", "Bull", "Bear"].map(s => (
+                  <button key={s} onClick={() => setScenario(s)}
+                    style={{ background: scenario === s ? (s === 'Bull' ? C.green : s === 'Bear' ? C.red : C.t1) : "transparent",
+                      color: scenario === s ? C.bg : C.t2,
+                      border: "none", borderRadius: 4, fontSize: 9, fontWeight: 700, padding: "2px 8px", cursor: "pointer", transition: "all 0.2s" }}>
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
               <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase" }}>Projection Targets</p>
               <div style={{ display: "flex", gap: 4 }}>
-                {Object.keys(PROJECTIONS).map(t => (
+                {Object.keys(SCENARIOS[scenario]).map(t => (
                   <button key={t} onClick={() => setProjTab(t)}
                     style={{ background: projTab === t ? C.t1 : "transparent", color: projTab === t ? C.bg : C.t2,
                       border: `1px solid ${projTab === t ? C.t1 : C.border}`, borderRadius: 12, fontSize: 9, padding: "2px 6px", cursor: "pointer", transition: "all 0.2s" }}>
@@ -186,11 +275,11 @@ export default function MainDashboard() {
                 <tr style={{ borderBottom: `1px solid ${C.border}`, color: C.t3, fontSize: 9 }}>
                   <th style={{ textAlign: "left", padding: "4px 0" }}>Horizon</th>
                   <th style={{ textAlign: "right" }}>Target</th>
-                  <th style={{ textAlign: "right" }}>Drivers</th>
+                  <th style={{ textAlign: "right" }}>Drivers / Catalyst</th>
                 </tr>
               </thead>
               <tbody>
-                {PROJECTIONS[projTab].map((p, i) => (
+                {SCENARIOS[scenario][projTab].map((p, i) => (
                   <tr key={i} style={{ borderBottom: i === 4 ? "none" : `1px solid ${C.border}` }}>
                     <td style={{ padding: "4px 0" }}>{p.h}</td>
                     <td style={{ textAlign: "right", fontWeight: 600, color: p.c || C.t1 }}>{p.t}</td>
@@ -206,8 +295,11 @@ export default function MainDashboard() {
         <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 16 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: `1px solid ${C.border}`, paddingBottom: 6, marginBottom: 12 }}>
             <h2 style={{ fontSize: 13, fontWeight: 700, color: C.red }}>🚨 AI Bubble & Smart Money Tracker</h2>
-            <div style={{ background: C.redbg, color: C.red, padding: "2px 8px", borderRadius: 12, fontSize: 10, fontWeight: 700, border: `1px solid ${C.red}` }}>
-              VERDICT: HIGH RISK ZONES
+            <div style={{ background: scenario === 'Bear' ? C.redbg : scenario === 'Bull' ? C.greenbg : C.amberbg,
+              color: scenario === 'Bear' ? C.red : scenario === 'Bull' ? C.green : C.amber,
+              padding: "2px 8px", borderRadius: 12, fontSize: 10, fontWeight: 700,
+              border: `1px solid ${scenario === 'Bear' ? C.red : scenario === 'Bull' ? C.green : C.amber}` }}>
+              VERDICT: {scenario === 'Bear' ? "CRITICAL SQUEEZE" : scenario === 'Bull' ? "LIQUIDITY EXPANSION" : "STRETCHED VALUATIONS"}
             </div>
           </div>
           
