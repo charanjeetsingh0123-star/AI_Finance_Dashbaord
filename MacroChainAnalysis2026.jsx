@@ -81,7 +81,7 @@ export default function ChainAnalysis(){
         position:"sticky",top:0,zIndex:50,
         background:"rgba(9,9,11,.85)",backdropFilter:"blur(12px)"}}>
         <p style={{fontSize:15,fontWeight:700,color:C.t1,marginBottom:2,letterSpacing:".01em"}}>
-          Master-Class Chain Analysis — May 31, 2026
+          Master-Class Chain Analysis — {live?.updated_at || "June 2, 2026"}
         </p>
         <p style={{fontSize:11,color:C.t3}}>
           Warsh · Hormuz · Fed Rate · Gold · Bond Market · US Debt · De-dollarisation · India impact
@@ -119,7 +119,7 @@ export default function ChainAnalysis(){
 
           {/* Live data */}
           <p style={{fontSize:10,fontWeight:600,textTransform:"uppercase",
-            letterSpacing:".07em",color:C.t3,margin:"14px 0 8px"}}>Current readings — May 31, 2026</p>
+            letterSpacing:".07em",color:C.t3,margin:"14px 0 8px"}}>Current readings — {live?.updated_at || "June 2, 2026"}</p>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:14}}>
             <div style={{background:C.card2,border:`0.5px solid ${C.border}`,borderRadius:10,padding:"12px 14px"}}>
               {[

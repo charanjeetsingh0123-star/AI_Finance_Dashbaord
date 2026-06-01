@@ -99,7 +99,7 @@ export default function MasterAnalysis(){
     <div style={{minHeight:"100vh",background:C.bg,color:C.t1,fontFamily:"'Inter',system-ui,sans-serif",paddingBottom:60}}>
       <div style={{borderBottom:`1px solid ${C.border}`,padding:"16px 20px",position:"sticky",top:0,zIndex:50,background:"rgba(9,9,11,.85)",backdropFilter:"blur(12px)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <div>
-          <p style={{fontSize:15,fontWeight:700,letterSpacing:".01em",marginBottom:2}}>Master-Class Analysis · May 31, 2026</p>
+          <p style={{fontSize:15,fontWeight:700,letterSpacing:".01em",marginBottom:2}}>{live ? `Master-Class Analysis · ${live.updated_at || "June 2, 2026"}` : "Master-Class Analysis · June 2, 2026"}</p>
           <p style={{fontSize:11,color:C.t3}}>Gold critique · US bubble · AI risks · Trump playbook · Recession map · Bulletproof chain</p>
         </div>
         <div style={{display:"flex",gap:8}}>
@@ -196,7 +196,7 @@ export default function MasterAnalysis(){
         {tab===1&&<>
           <Grid cols={3} gap={8} mb={14}>
             <Card t="Shiller CAPE Ratio" v="38.9" vc={C.red} border={C.red} s="Only exceeded at dot-com peak (44 in 2000). Historical avg: 17"/>
-            <Card t="Buffett Indicator" v="226%" vc={C.red} border={C.red} s="Market cap / GDP. Buffett's own signal = 'significantly overvalued'"/>
+            <Card t="Buffett Indicator" v="237.8%" vc={C.red} border={C.red} s="Market cap / GDP. Buffett's own signal = 'significantly overvalued'"/>
             <Card t="S&P vs Historical Trend" v="+70%" vc={C.red} border={C.red} s="2.0 std deviations above. Mean reversion = -35% to -40%"/>
             <Card t="Top 10 stocks % of S&P" v="44%" vc={C.amber} border={C.amber} s="Extreme concentration. $26T of $58T total market cap"/>
             <Card t="Forward P/E" v="22x" vc={C.amber} border={C.amber} s="vs 10-yr avg of 17x. Only 2x in history: dot-com + COVID QE"/>
@@ -212,7 +212,7 @@ export default function MasterAnalysis(){
             <br/>
             <strong style={{color:C.t1}}>Hedge fund flows:</strong> Long/short funds reducing net exposure. Goldman Sachs prime brokerage showing consistent de-grossing since February 2026.
             <br/>
-            <strong style={{color:C.t1}}>Microsoft down 17% YTD, Amazon down 9%</strong> despite beating earnings = market pricing in FCF risk from AI capex.
+            <strong style={{color:C.t1}}>Microsoft at ${live?.msft?.value || "461.06"}, Nvidia at ${live?.nvda?.value || "222.80"}</strong> = market pricing in cash reserves vs floating debt / capex ROI risk.
           </Box>
 
           <Box c={C.orange} t="The S&P 500 concentration problem — 2000 remake?">
@@ -259,7 +259,7 @@ export default function MasterAnalysis(){
                 {[{k:"Revenue",v:"$81.6B (record)",vc:C.green},{k:"Growth YoY",v:"+85%",vc:C.green},{k:"Growth QoQ",v:"+20%",vc:C.green},{k:"Data Center",v:"$75.2B (+92% YoY)",vc:C.green},{k:"Net income",v:"$58.3B (+211% YoY)",vc:C.green},{k:"EPS (GAAP)",v:"$2.39",vc:C.green},{k:"Gross margin",v:"74.9%",vc:C.green}].map((r,i)=><R2 key={i} {...r}/>)}
               </div>
               <div>
-                {[{k:"Share buyback auth",v:"$80B additional",vc:C.cyan},{k:"Dividend (new)",v:"$0.25/quarter (was $0.01)",vc:C.cyan},{k:"Jensen Huang quote",v:"'AI industrial revolution'",vc:C.amber},{k:"Shareholders equity",v:"$195B",vc:C.green},{k:"Next Q guidance",v:"~$87B (implied)",vc:C.green},{k:"PE ratio",v:"~35–40x",vc:C.amber},{k:"Market cap",v:"~$3.2T",vc:C.amber}].map((r,i)=><R2 key={i} {...r}/>)}
+                {[{k:"Share buyback auth",v:"$80B additional",vc:C.cyan},{k:"Dividend (new)",v:"$0.25/quarter (was $0.01)",vc:C.cyan},{k:"Jensen Huang quote",v:"'AI industrial revolution'",vc:C.amber},{k:"Shareholders equity",v:"$195B",vc:C.green},{k:"Next Q guidance",v:"~$87B (implied)",vc:C.green},{k:"PE ratio",v:"~40-45x",vc:C.amber},{k:"Market cap",v:"~$5.5T",vc:C.amber}].map((r,i)=><R2 key={i} {...r}/>)}
               </div>
             </div>
           </Box>
@@ -477,8 +477,8 @@ export default function MasterAnalysis(){
                 {[
                   "Your 43.6% gold allocation is the single best macro bet for 2026–2030",
                   "India equities outperform in EVERY global scenario vs US/Europe",
-                  "Nifty at 24,000 with Nifty/Gold ratio 1.93 = historically cheap entry",
-                  "Silver (G/S ratio 58.9) = the highest conviction trade right now",
+                  `Nifty at ${Math.round(live?.nifty50?.value || 23382).toLocaleString()} with Nifty/Gold ratio ${ngRatio} = historically cheap entry`,
+                  `Silver (G/S ratio ${gsRatio}) = the highest conviction trade right now`,
                   "US market is 70% above trend — reduce US equity exposure except BRK.B/GLD",
                   "IT stocks pain is 12–18 months, not structural — hold through it",
                 ].map((x,i)=>(<p key={i} style={{fontSize:11,color:C.t2,lineHeight:1.5,marginBottom:4,paddingLeft:10,position:"relative"}}><span style={{position:"absolute",left:0,color:C.green}}>✓</span>{x}</p>))}
