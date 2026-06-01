@@ -437,7 +437,7 @@ export default function FamilyPortfolioDashboard() {
 
   const fetchLocalPortfolio = useCallback(async () => {
     try {
-      const res = await fetch("/api/portfolio");
+      const res = await (window.smartFetch || fetch)("/api/portfolio");
       if (!res.ok) return;
       const local = await res.json();
       if (local && local.holdings && local.holdings.length > 0) {
@@ -476,7 +476,7 @@ export default function FamilyPortfolioDashboard() {
     fetchLocalPortfolio();
     
     // Fetch live prices
-    fetch("/api/live")
+    (window.smartFetch || fetch)("/api/live")
       .then(r => r.json())
       .then(d => {
         if (d && d.prices) setLivePrices(d.prices);

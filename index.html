@@ -217,8 +217,24 @@
       bar.innerHTML = html;
     }
 
+    window.smartFetch = function(url, options) {
+      return fetch(url, options).then(res => {
+        if (!res.ok && url.startsWith('/api/')) {
+          const fallbackUrl = 'data/' + url.substring(5) + '.json';
+          return fetch(fallbackUrl);
+        }
+        return res;
+      }).catch(err => {
+        if (url.startsWith('/api/')) {
+          const fallbackUrl = 'data/' + url.substring(5) + '.json';
+          return fetch(fallbackUrl);
+        }
+        throw err;
+      });
+    };
+
     function fetchTicker() {
-      fetch('/api/live').then(r=>r.json()).then(updateTicker).catch(()=>{});
+      window.smartFetch('/api/live').then(r=>r.json()).then(updateTicker).catch(()=>{});
     }
     fetchTicker();
     setInterval(fetchTicker, 30000);
@@ -234,7 +250,7 @@
     // NEWS PANEL — auto-refresh every 5 min
     // ═══════════════════════════════════════════
     function fetchNews() {
-      fetch('/api/news').then(r=>r.json()).then(data => {
+      window.smartFetch('/api/news').then(r=>r.json()).then(data => {
         const list = document.getElementById('news-list');
         const upd = document.getElementById('news-updated');
         if (!data || !data.items || data.items.length === 0) {

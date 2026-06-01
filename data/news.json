@@ -1,6 +1,33 @@
 {
   "items": [
     {
+      "title": "B&G Foods (BGS): Buy, Sell, or Hold Post Q1 Earnings?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/b-g-foods-bgs-buy-184851335.html",
+      "source": "StockStory",
+      "published": "Jun 01, 18:48",
+      "timestamp": 1780339731.0,
+      "query": "S&P 500",
+      "summary": "Over the past six months, B&G Foods’s shares (currently trading at $4.09) have posted a disappointing 12.2% loss, well below the S&P 500’s 10.9% gain. This might have investors contemplating their nex"
+    },
+    {
+      "title": "Wall St flutters higher amid tech gains, Middle East developments",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/us-stock-futures-rise-ai-111509327.html",
+      "source": "Reuters",
+      "published": "Jun 01, 18:41",
+      "timestamp": 1780339314.0,
+      "query": "S&P 500",
+      "summary": "By Stephen Culp and Medha Singh NEW YORK, June 1 (Reuters) - Wall Street stocks began the new week and month with modest gains amid rapid developments in U.S.-Iran peace negotiations and the unveiling"
+    },
+    {
+      "title": "3 Reasons to Sell FLG and 1 Stock to Buy Instead",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-flg-1-184051998.html",
+      "source": "StockStory",
+      "published": "Jun 01, 18:40",
+      "timestamp": 1780339251.0,
+      "query": "S&P 500",
+      "summary": "Flagstar Financial has followed the market’s trajectory closely, rising in tandem with the S&P 500 over the past six months. The stock has climbed by 13.3% to $14.06 per share while the index has gain"
+    },
+    {
       "title": "Strategy sells bitcoin for first time since 2022",
       "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-sells-bitcoin-first-time-184017225.html",
       "source": "Quartz",
@@ -8,15 +35,6 @@
       "timestamp": 1780339217.0,
       "query": "Bitcoin",
       "summary": "The bitcoin-hoarding firm founded by Michael Saylor sold 32 coins last week for $2.5 million to fund distributions on its preferred stock"
-    },
-    {
-      "title": "AMD Target Raised as AI CPU Demand Builds",
-      "link": "https://finance.yahoo.com/sectors/technology/articles/amd-target-raised-ai-cpu-183554961.html",
-      "source": "GuruFocus.com",
-      "published": "Jun 01, 18:35",
-      "timestamp": 1780338954.0,
-      "query": "Nvidia",
-      "summary": "Mizuho lifted its AMD target to $615, citing strong agentic AI demand across the CPU market."
     },
     {
       "title": "Apple AI Strategy Could Drive Next Stock Move",
@@ -37,15 +55,6 @@
       "summary": "Over the past six months, Guardant Health has been a great trade, beating the S&P 500 by 11.7%. Its stock price has climbed to $129.08, representing a healthy 22.7% increase. This was partly thanks to"
     },
     {
-      "title": "Are Investors Making a Mistake by Waiting for a Better Market Entry Point?",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/investors-making-mistake-waiting-better-183100603.html",
-      "source": "Motley Fool",
-      "published": "Jun 01, 18:31",
-      "timestamp": 1780338660.0,
-      "query": "Nvidia",
-      "summary": "AI might really change everything. That doesn't mean every AI stock is a buy right now."
-    },
-    {
       "title": "Jim Cramer sends harsh message on Saylor's Bitcoin sale",
       "link": "https://finance.yahoo.com/markets/crypto/articles/jim-cramer-sends-harsh-message-183000174.html",
       "source": "TheStreet",
@@ -53,6 +62,15 @@
       "timestamp": 1780338600.0,
       "query": "Bitcoin",
       "summary": "Michael Saylor just backtracked from his \"never sell your Bitcoin\" stance, and the markets noticed. On May 31, Saylor made his famous \"orange dot\" post on X, which usually shows up right before announ"
+    },
+    {
+      "title": "Strategy Sells Bitcoin for First Time Since 2022, Triggering $15M Polymarket Dispute",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-sells-bitcoin-first-time-182749113.html",
+      "source": "CCN",
+      "published": "Jun 01, 18:27",
+      "timestamp": 1780338469.0,
+      "query": "Bitcoin",
+      "summary": "Strategy sold 32 BTC (~$2.5M) to help fund preferred stock dividend payments. The sale represented just 0.004% of its 843,706 BTC holdings and was made ..."
     },
     {
       "title": "Google's parent company wants to set loose 32 million lab-bred mosquitoes in America — and time is running out to object",
@@ -64,30 +82,12 @@
       "summary": "Alphabet is seeking federal approval to release up to 32 million treated mosquitoes across California and Florida to curb the spread of mosquito-borne diseases. Here’s why — and what to consider."
     },
     {
-      "title": "Profitless Tech Surges 57% As Wall Street Signals Caution",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/profitless-tech-surges-57-wall-182134413.html",
-      "source": "GuruFocus.com",
-      "published": "Jun 01, 18:21",
-      "timestamp": 1780338094.0,
-      "query": "S&P 500",
-      "summary": "Money-losing tech stocks outpaced major indexes as strategists warn about rising yields and speculation."
-    },
-    {
-      "title": "Could Buying Ethereum Today Set You Up for a 20X Return? One Top Bank Thinks So",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/could-buying-ethereum-today-set-182000651.html",
-      "source": "Motley Fool",
-      "published": "Jun 01, 18:20",
-      "timestamp": 1780338000.0,
-      "query": "Bitcoin",
-      "summary": "Ethereum's value has come crashing down this year, and it could give investors the opportunity to buy it at a much more attractive price."
-    },
-    {
       "title": "Equities Mostly Rise Intraday Amid Nvidia Rally; Oil Jumps",
       "link": "https://finance.yahoo.com/markets/stocks/articles/equities-mostly-rise-intraday-amid-181823413.html",
       "source": "MT Newswires",
       "published": "Jun 01, 18:18",
       "timestamp": 1780337903.0,
-      "query": "crude oil",
+      "query": "Microsoft",
       "summary": "US benchmark equity indexes were mostly higher intraday as Nvidia (NVDA) helped lift the technology"
     },
     {
@@ -96,7 +96,7 @@
       "source": "Yahoo Finance Video",
       "published": "Jun 01, 18:18",
       "timestamp": 1780337887.0,
-      "query": "Nvidia",
+      "query": "Microsoft",
       "summary": "Nvidia CEO Jensen Huang introduces the new RTX Spark laptop lineup powered by the Blackwell RTX GPU. This is a major collaboration with Microsoft and other industry partners to reinvent the personal c"
     },
     {
@@ -118,24 +118,6 @@
       "summary": "The filing follows a $965 billion Series H valuation."
     },
     {
-      "title": "Dell Unveils $699 XPS 13 To Challenge Apple's MacBook Neo",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/dell-unveils-699-xps-13-175742706.html",
-      "source": "GuruFocus.com",
-      "published": "Jun 01, 17:57",
-      "timestamp": 1780336662.0,
-      "query": "Apple",
-      "summary": "Dell launches redesigned XPS 13 with premium features as Apple's budget laptop demand accelerates."
-    },
-    {
-      "title": "Goldman Warns Oil Faces $10 Downside Risk",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/goldman-warns-oil-faces-10-175557048.html",
-      "source": "GuruFocus.com",
-      "published": "Jun 01, 17:55",
-      "timestamp": 1780336557.0,
-      "query": "crude oil",
-      "summary": "Goldman sees weaker demand competing with Middle East supply losses as Brent trades near $93."
-    },
-    {
       "title": "Top Midday Decliners",
       "link": "https://finance.yahoo.com/markets/stocks/articles/top-midday-decliners-175530810.html",
       "source": "MT Newswires",
@@ -154,51 +136,6 @@
       "summary": "Amazon.com (AMZN), Microsoft (MSFT) and Alphabet's (GOOG, GOOGL) Google may be excluded from critica"
     },
     {
-      "title": "Goldman Sachs doubles down on oil and economy message for 2026",
-      "link": "https://finance.yahoo.com/economy/articles/goldman-sachs-doubles-down-oil-174700652.html",
-      "source": "TheStreet",
-      "published": "Jun 01, 17:47",
-      "timestamp": 1780336020.0,
-      "query": "crude oil",
-      "summary": "Three months into the Iran War, vessel traffic through the Strait of Hormuz is still running more than 90% below normal levels. Base chemicals have risen faster than at any point on record. Asian petr"
-    },
-    {
-      "title": "Berkshire's post-Buffett era starts with a homebuilder: Chart of the Day",
-      "link": "https://finance.yahoo.com/markets/article/berkshires-post-buffett-era-starts-with-a-homebuilder-chart-of-the-day-172652503.html",
-      "source": "Yahoo Finance",
-      "published": "Jun 01, 17:26",
-      "timestamp": 1780334812.0,
-      "query": "S&P 500",
-      "summary": "Greg Abel's first big Berkshire deal looks familiar on purpose: cash, housing, and an understandable business. But there's a twist."
-    },
-    {
-      "title": "Forget Bitcoin! 1 Historically Cheap Stock to Buy Right Now Instead of the World’s Largest Cryptocurrency",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/forget-bitcoin-1-historically-cheap-171003912.html",
-      "source": "24/7 Wall St.",
-      "published": "Jun 01, 17:10",
-      "timestamp": 1780333803.0,
-      "query": "gold price",
-      "summary": "Bitcoin is back in every headline this week, with the world’s largest cryptocurrency hovering around $73,673 and traders debating whether the dip is the bottom. But here’s what you should actually be "
-    },
-    {
-      "title": "Apple Inc. (AAPL): One of the Promising Stocks to Buy According to AI",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/apple-inc-aapl-one-promising-170040937.html",
-      "source": "Insider Monkey",
-      "published": "Jun 01, 17:00",
-      "timestamp": 1780333240.0,
-      "query": "Apple",
-      "summary": "We just covered the 10 Best Stocks to Buy Right Now According to AI and Apple Inc. (NASDAQ:AAPL) ranks 6th on this list. Apple Inc. (NASDAQ:AAPL) is a premier consumer technology company celebrated fo"
-    },
-    {
-      "title": "Taiwan Semiconductor Manufacturing (TSM): One of the Best Stocks According to AI",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/taiwan-semiconductor-manufacturing-tsm-one-165315302.html",
-      "source": "Insider Monkey",
-      "published": "Jun 01, 16:53",
-      "timestamp": 1780332795.0,
-      "query": "Apple",
-      "summary": "We just covered the 10 Best Stocks to Buy Right Now According to AI and Taiwan Semiconductor Manufacturing Company Limited (NYSE:TSM) ranks 1st on this list. Taiwan Semiconductor Manufacturing Company"
-    },
-    {
       "title": "Zigging when most are zagging, ex-Meta CTO raises $250M climate fund",
       "link": "https://finance.yahoo.com/sectors/energy/articles/zigging-most-zagging-ex-meta-164222878.html",
       "source": "TechCrunch",
@@ -213,7 +150,7 @@
       "source": "MT Newswires",
       "published": "Jun 01, 16:27",
       "timestamp": 1780331243.0,
-      "query": "gold price",
+      "query": "silver price",
       "summary": "Nicola Mining (NIM.V) were last seen up 5% after the company on Monday said it is in the final stage"
     },
     {
@@ -235,15 +172,6 @@
       "summary": "The social media giant recently announced the launch of new subscription options for its popular apps."
     },
     {
-      "title": "Chime CEO says hundreds of thousands of its members are setting up Trump accounts as it pushes into investing",
-      "link": "https://finance.yahoo.com/markets/stocks/article/chime-ceo-says-hundreds-of-thousands-of-its-members-are-setting-up-trump-accounts-as-it-pushes-into-investing-161148607.html",
-      "source": "Yahoo Finance",
-      "published": "Jun 01, 16:11",
-      "timestamp": 1780330308.0,
-      "query": "S&P 500",
-      "summary": "Chime looks to be a key player in the Trump Accounts game."
-    },
-    {
       "title": "Gold tumbles as oil rebounds and US-Iran deal remains in limbo",
       "link": "https://finance.yahoo.com/markets/article/gold-tumbles-as-oil-rebounds-and-us-iran-deal-remains-in-limbo-160119025.html",
       "source": "Yahoo Finance",
@@ -253,15 +181,6 @@
       "summary": "Gold falls as oil surges on uncertainty surrounding a potential US–Iran deal."
     },
     {
-      "title": "IAMGOLD boosts Côté Gold M&I resource ahead of expansion study",
-      "link": "https://finance.yahoo.com/markets/commodities/articles/iamgold-boosts-c-t-gold-155900201.html",
-      "source": "Proactive",
-      "published": "Jun 01, 15:59",
-      "timestamp": 1780329540.0,
-      "query": "gold price",
-      "summary": "IAMGOLD Corp (TSX:IMG, NYSE:IAG) reported a consolidated measured and indicated mineral resource of 20.3 million ounces of gold for its Côté Gold mine in Ontario, an increase of approximately 2.2 mill"
-    },
-    {
       "title": "Bitcoin prices vs Nasdaq: Crypto 'should be bottoming' this year",
       "link": "https://finance.yahoo.com/video/bitcoin-prices-vs-nasdaq-crypto-152139480.html",
       "source": "Yahoo Finance Video",
@@ -269,8 +188,89 @@
       "timestamp": 1780327299.0,
       "query": "Bitcoin",
       "summary": "Bitcoin (BTC-USD) prices have been diverging from the Nasdaq Composite (^IXIC). Fundstrat Global Advisors' managing director and global head of technical strategy, Mark Newton, joins Yahoo Finance to "
+    },
+    {
+      "title": "Does Lundin Gold’s Silver Stream Dividend-in-Kind Shift the Bull Case for TSX:LUG?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/does-lundin-gold-silver-stream-150946235.html",
+      "source": "Simply Wall St.",
+      "published": "Jun 01, 15:09",
+      "timestamp": 1780326586.0,
+      "query": "silver price",
+      "summary": "Lundin Gold has completed a silver stream-for-equity transaction with LunR Royalties tied to its Fruta del Norte mine in Ecuador and, as of May 29, 2026, has declared a special dividend-in-kind that w"
+    },
+    {
+      "title": "Bunker Hill Mining Provides Update on Cate-8 Exploration Program",
+      "link": "https://finance.yahoo.com/markets/commodities/articles/bunker-hill-mining-provides-cate-143745491.html",
+      "source": "MT Newswires",
+      "published": "Jun 01, 14:37",
+      "timestamp": 1780324665.0,
+      "query": "silver price",
+      "summary": "Bunker Hill Mining (BNKR.TO) said on Monday that drill results from the Cate-8 exploration program a"
+    },
+    {
+      "title": "Nvidia reveals powerful new AI supercomputer chip for Fall",
+      "link": "https://finance.yahoo.com/video/nvidia-reveals-powerful-ai-supercomputer-142816907.html",
+      "source": "Yahoo Finance Video",
+      "published": "Jun 01, 14:28",
+      "timestamp": 1780324096.0,
+      "query": "Nvidia",
+      "summary": "Yahoo Finance Executive Editor Brian Sozzi and the Opening Bid panel — Sevens Report Research Founder Tom Essaye, Yahoo Finance Senior Business Reporter Ines Ferre, and Markets & Data Editor Jared Bli"
+    },
+    {
+      "title": "The value Nvidia's new chips will add to Windows PCs",
+      "link": "https://finance.yahoo.com/video/value-nvidias-chips-add-windows-142208000.html",
+      "source": "Yahoo Finance Video",
+      "published": "Jun 01, 14:22",
+      "timestamp": 1780323728.0,
+      "query": "Microsoft",
+      "summary": "Nvidia stock (NVDA) cruises higher to start off Monday trading after CEO Jensen Huang revealed its new N1X and RTX Spark chips at Computex Taipei 2026 over the weekend. Yahoo Finance Tech Editor Dan H"
+    },
+    {
+      "title": "Bitcoin and ethereum prices today, Monday, June 1, 2026: Prices falling this morning",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-monday-june-1-2026-prices-falling-this-morning-141555512.html",
+      "source": "Yahoo Personal Finance",
+      "published": "Jun 01, 14:15",
+      "timestamp": 1780323355.0,
+      "query": "Bitcoin",
+      "summary": "Bitcoin opened at $73,568.4 on Monday, June 1, 2026, 0.3% lower than Sunday’s opening price. Ethereum opened at $2,004.03 on Monday, down 0.8% from Sunday’s opening price."
+    },
+    {
+      "title": "Meta, Alphabet, Amazon, and Microsoft are getting hooked on debt to fuel AI boom",
+      "link": "https://finance.yahoo.com/markets/article/meta-alphabet-amazon-and-microsoft-are-getting-hooked-on-debt-to-fuel-ai-boom-140111460.html",
+      "source": "Yahoo Finance",
+      "published": "Jun 01, 14:01",
+      "timestamp": 1780322471.0,
+      "query": "Microsoft",
+      "summary": "Debt is becoming a big tool in the Big Tech arsenal."
+    },
+    {
+      "title": "Microsoft, Dell, and HP stocks rise as Nvidia announces new AI chip for personal computers",
+      "link": "https://finance.yahoo.com/markets/stocks/article/microsoft-dell-and-hp-stocks-rise-as-nvidia-announces-new-ai-chip-for-personal-computers-130915506.html",
+      "source": "Yahoo Finance",
+      "published": "Jun 01, 13:09",
+      "timestamp": 1780319355.0,
+      "query": "Nvidia",
+      "summary": "Microsoft, Dell, and HP stocks popped after Nvidia announced a push into the personal computer market."
+    },
+    {
+      "title": "Nvidia CEO Jensen Huang just perfectly explained the AI stock boom",
+      "link": "https://finance.yahoo.com/markets/article/nvidia-ceo-jensen-huang-just-perfectly-explained-the-ai-stock-boom-130835624.html",
+      "source": "Yahoo Finance",
+      "published": "Jun 01, 13:08",
+      "timestamp": 1780319315.0,
+      "query": "Nvidia",
+      "summary": "Jensen level sets with the bulls."
+    },
+    {
+      "title": "Gold prices today, Monday, June 1: Gold prices moving lower this morning",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-monday-june-1-gold-prices-moving-lower-this-morning-120153249.html",
+      "source": "Yahoo Personal Finance",
+      "published": "Jun 01, 12:01",
+      "timestamp": 1780315313.0,
+      "query": "gold price",
+      "summary": "Gold (GC=F) June futures opened at $4,575.20 per troy ounce on Monday, down 0.4% from the previous closing price on Friday of $4,593. Gold moved slightly lower in early trading, falling to $4,537.90 b"
     }
   ],
-  "updated_at": "2026-06-02 00:14:55 IST",
+  "updated_at": "2026-06-02 00:35:33 IST",
   "count": 30
 }

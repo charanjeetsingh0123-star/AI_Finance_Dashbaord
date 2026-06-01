@@ -80,7 +80,7 @@ export default function MasterAnalysis(){
   };
 
   useEffect(() => {
-    fetch("/api/live")
+    (window.smartFetch || fetch)("/api/live")
       .then(r => r.json())
       .then(d => {
         if (d && d.prices) setLive(d.prices);

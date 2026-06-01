@@ -81,11 +81,11 @@ export default function MainDashboard() {
   };
 
   useEffect(() => {
-    fetch("/api/live")
+    (window.smartFetch || fetch)("/api/live")
       .then(r => r.json())
       .then(d => { if (d && d.prices) setLive(d.prices); })
       .catch(() => {});
-    fetch("/api/news")
+    (window.smartFetch || fetch)("/api/news")
       .then(r => r.json())
       .then(d => { if (d && d.items) setNews(d.items.slice(0, 5)); })
       .catch(() => {});
