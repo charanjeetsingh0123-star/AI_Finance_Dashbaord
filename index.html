@@ -268,7 +268,7 @@
       });
       rootEl.innerHTML = '<div id="loading">Loading ' + tab.label + '…</div>';
 
-      fetch(tab.id + '.jsx')
+      fetch(tab.id + '.jsx?v=' + Date.now())
         .then(r => { if (!r.ok) throw new Error('File not found: ' + tab.id + '.jsx'); return r.text(); })
         .then(code => {
           let cleaned = code
