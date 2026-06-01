@@ -8,7 +8,8 @@ const C = {
   green: "#22c55e", greenbg: "rgba(34,197,94,0.08)",
   blue: "#60a5fa", bluebg: "rgba(96,165,250,0.08)",
   purple: "#a78bfa", purplebg: "rgba(167,139,250,0.08)",
-  cyan: "#06b6d4", cyanbg: "rgba(6,182,212,0.08)"
+  cyan: "#06b6d4", cyanbg: "rgba(6,182,212,0.08)",
+  gold: "#fbbf24"
 };
 
 const StatCard = ({ title, val, change, trend, sub }) => (
@@ -39,7 +40,6 @@ const ProgressBar = ({ label, val, max, color }) => {
 
 export default function MainDashboard() {
   const [live, setLive] = useState(null);
-  const [news, setNews] = useState([]);
   const [projTab, setProjTab] = useState("Gold");
   const [scenario, setScenario] = useState("Base");
 
@@ -164,25 +164,149 @@ export default function MainDashboard() {
       .catch(() => {});
   }, []);
 
-  const goldVal = live?.gold_usd?.value || 4593.00;
-  const crudeVal = live?.crude_wti?.value || 87.36;
-  const bondVal = live?.us_10y?.value || 4.45;
-  const dxyVal = live?.dxy?.value || 98.91;
-  const gsRatio = live?.gold_silver_ratio?.value || 60.53;
-  const ngRatio = live?.nifty_gold_ratio?.value || 1.68;
-  const niftyVal = live?.nifty50?.value || 23547.75;
-  const nvdaVal = live?.nvda?.value || 120.00;
-  const msftVal = live?.msft?.value || 400.00;
-  const aaplVal = live?.aapl?.value || 190.00;
-  const googlVal = live?.googl?.value || 170.00;
-  const metaVal = live?.meta?.value || 450.00;
+  const SCENARIO_DATA = {
+    Base: {
+      fedRate: "3.50% - 3.75%",
+      fedStatus: "Hold",
+      bondVal: live?.us_10y?.value || 4.47,
+      bondChg: live?.us_10y?.change_pct ? `${live.us_10y.change_pct}%` : "+0.49%",
+      bondTrend: "up",
+      dxyVal: live?.dxy?.value || 99.19,
+      dxyChg: live?.dxy?.change_pct ? `${live.dxy.change_pct}%` : "+0.12%",
+      crudeVal: live?.crude_wti?.value || 92.23,
+      crudeChg: live?.crude_wti?.change_pct ? `${live.crude_wti.change_pct}%` : "+2.77%",
+      goldVal: live?.gold_usd?.value || 4515.10,
+      goldChg: live?.gold_usd?.change_pct ? `${live.gold_usd.change_pct}%` : "-0.68%",
+      gsRatio: live?.gold_silver_ratio?.value || 59.92,
+      ngRatio: live?.nifty_gold_ratio?.value || 1.51,
+      niftyVal: live?.nifty50?.value || 23382.60,
+      niftyChg: live?.nifty50?.change_pct ? `${live.nifty50.change_pct}%` : "-0.96%",
+      cmeWatch: { hike: 57, hold: 43, cut: 0 },
+      cmeReason: "CPI jumped to 3.8% vs GDP slowdown (2.0%). Hawks push rate hike to preserve inflation control.",
+      buffett: "237.8% (Significantly Overvalued)",
+      yieldNorm: "+0.47% (Recession Warning: 5-19mo)",
+      refiWall: "$368B (41% Zombie Companies)",
+      tariff: "Max Tariffs Threat",
+      warPremium: "Hormuz blockage risk 15%",
+      dma50: "$4,380 (Above DMA)",
+      dma200: "$4,150 (Golden Cross)",
+      dedollar: "Extreme (BRICS buying)",
+      stocks: {
+        nvda: { price: live?.nvda?.value || 224.02, val: "Overvalued", valColor: C.red, flow: "Distribution", flowColor: C.red },
+        msft: { price: live?.msft?.value || 463.61, val: "Overvalued", valColor: C.red, flow: "Moving Away", flowColor: C.red },
+        aapl: { price: live?.aapl?.value || 307.48, val: "Stretched", valColor: C.amber, flow: "Neutral", flowColor: C.amber },
+        googl: { price: live?.googl?.value || 378.14, val: "Fair", valColor: C.green, flow: "Adding", flowColor: C.green },
+        meta: { price: live?.meta?.value || 605.28, val: "Fair", valColor: C.green, flow: "Neutral", flowColor: C.amber }
+      }
+    },
+    Bull: {
+      fedRate: "3.00% - 3.25%",
+      fedStatus: "Cuts Started",
+      bondVal: (live?.us_10y?.value ? (live.us_10y.value * 0.86).toFixed(2) : 3.85),
+      bondChg: "-1.25%",
+      bondTrend: "dn",
+      dxyVal: (live?.dxy?.value ? (live.dxy.value * 0.96).toFixed(2) : 95.50),
+      dxyChg: "-0.85%",
+      crudeVal: (live?.crude_wti?.value ? (live.crude_wti.value * 0.85).toFixed(2) : 78.50),
+      crudeChg: "-3.40%",
+      goldVal: (live?.gold_usd?.value ? (live.gold_usd.value * 1.05).toFixed(2) : 4720.00),
+      goldChg: "+1.85%",
+      gsRatio: 55.20,
+      ngRatio: 1.75,
+      niftyVal: (live?.nifty50?.value ? (live.nifty50.value * 1.09).toFixed(2) : 25600.00),
+      niftyChg: "+2.15%",
+      cmeWatch: { hike: 0, hold: 15, cut: 85 },
+      cmeReason: "Inflation drops to 2.8%. Fed pivots early to support economic expansion and credit markets.",
+      buffett: "255.4% (Stretched but backed by AI productivity)",
+      yieldNorm: "+0.85% (Healthy positive steepening)",
+      refiWall: "$368B (Zombies rescued by cheap credit)",
+      tariff: "Negotiated Tariffs / Low Impact",
+      warPremium: "De-escalating risk <5%",
+      dma50: "$4,490 (Bullish Expansion)",
+      dma200: "$4,220 (Golden Cross Confirmed)",
+      dedollar: "Moderate (Stable Reserves)",
+      stocks: {
+        nvda: { price: (live?.nvda?.value ? (live.nvda.value * 1.10).toFixed(2) : 245.50), val: "Stretched", valColor: C.amber, flow: "Strong Accumulation", flowColor: C.green },
+        msft: { price: (live?.msft?.value ? (live.msft.value * 1.10).toFixed(2) : 510.20), val: "Stretched", valColor: C.amber, flow: "Institutional Inflow", flowColor: C.green },
+        aapl: { price: (live?.aapl?.value ? (live.aapl.value * 1.11).toFixed(2) : 340.80), val: "Fair", valColor: C.green, flow: "Adding", flowColor: C.green },
+        googl: { price: (live?.googl?.value ? (live.googl.value * 1.09).toFixed(2) : 412.00), val: "Undervalued", valColor: C.green, flow: "Heavy Buying", flowColor: C.green },
+        meta: { price: (live?.meta?.value ? (live.meta.value * 1.09).toFixed(2) : 660.10), val: "Fair", valColor: C.green, flow: "Accumulation", flowColor: C.green }
+      }
+    },
+    Bear: {
+      fedRate: "4.00% - 4.25%",
+      fedStatus: "Forced Hike",
+      bondVal: (live?.us_10y?.value ? (live.us_10y.value * 1.15).toFixed(2) : 5.12),
+      bondChg: "+3.15%",
+      bondTrend: "up",
+      dxyVal: (live?.dxy?.value ? (live.dxy.value * 1.06).toFixed(2) : 104.80),
+      dxyChg: "+1.65%",
+      crudeVal: (live?.crude_wti?.value ? (live.crude_wti.value * 1.19).toFixed(2) : 110.00),
+      crudeChg: "+8.90%",
+      goldVal: (live?.gold_usd?.value ? (live.gold_usd.value * 1.08).toFixed(2) : 4850.00),
+      goldChg: "+4.20%",
+      gsRatio: 68.50,
+      ngRatio: 1.22,
+      niftyVal: (live?.nifty50?.value ? (live.nifty50.value * 0.88).toFixed(2) : 20500.00),
+      niftyChg: "-4.80%",
+      cmeWatch: { hike: 80, hold: 20, cut: 0 },
+      cmeReason: "Crude spike to $110/bbl forces Fed's hand to combat stagflation despite declining GDP (1.2%).",
+      buffett: "185.0% (Mean reversion underway)",
+      yieldNorm: "+0.12% (Panic Normalization / Crash warning)",
+      refiWall: "$368B (46% Zombies heading to default)",
+      tariff: "Universal Tariffs (Trade War)",
+      warPremium: "Hormuz blockage risk 35%",
+      dma50: "$4,210 (Death Cross Threat)",
+      dma200: "$4,350 (Breakdown Below DMA)",
+      dedollar: "Panic (Central Banks dumping Treasuries)",
+      stocks: {
+        nvda: { price: (live?.nvda?.value ? (live.nvda.value * 0.83).toFixed(2) : 185.20), val: "Overvalued", valColor: C.red, flow: "Heavy Distribution", flowColor: C.red },
+        msft: { price: (live?.msft?.value ? (live.msft.value * 0.84).toFixed(2) : 390.40), val: "Overvalued", valColor: C.red, flow: "Liquidation", flowColor: C.red },
+        aapl: { price: (live?.aapl?.value ? (live.aapl.value * 0.81).toFixed(2) : 250.60), val: "Stretched", valColor: C.amber, flow: "Outflow", flowColor: C.red },
+        googl: { price: (live?.googl?.value ? (live.googl.value * 0.82).toFixed(2) : 310.80), val: "Fair", valColor: C.green, flow: "Neutral", flowColor: C.amber },
+        meta: { price: (live?.meta?.value ? (live.meta.value * 0.82).toFixed(2) : 495.30), val: "Stretched", valColor: C.amber, flow: "Distribution", flowColor: C.red }
+      }
+    }
+  };
+
+  const currentData = SCENARIO_DATA[scenario];
+
+  const goldVal = currentData.goldVal;
+  const gsRatio = currentData.gsRatio;
+  const ngRatio = currentData.ngRatio;
 
   return (
     <div style={{ minHeight: "100vh", background: C.bg, color: C.t1, fontFamily: "'Inter',system-ui,sans-serif", padding: "16px 20px" }}>
       {/* Title Header */}
-      <div style={{ borderBottom: `1px solid ${C.border}`, paddingBottom: 12, marginBottom: 16 }}>
-        <h1 style={{ fontSize: 18, fontWeight: 700 }}>Statistical Macro Cockpit</h1>
-        <p style={{ fontSize: 10, color: C.t3, marginTop: 2 }}>Live Market Analytics · Projections & Playbook Horizon Matrix</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: `1px solid ${C.border}`, paddingBottom: 12, marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
+        <div>
+          <h1 style={{ fontSize: 18, fontWeight: 700 }}>Statistical Macro Cockpit</h1>
+          <p style={{ fontSize: 10, color: C.t3, marginTop: 2 }}>Live Market Analytics · Projections & Playbook Horizon Matrix</p>
+        </div>
+
+        {/* Global Scenario Selector */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, background: C.card2, border: `1px solid ${C.border}`, padding: "6px 12px", borderRadius: 8 }}>
+          <span style={{ fontSize: 10, fontWeight: 700, color: C.t3, textTransform: "uppercase", letterSpacing: ".05em" }}>Scenario Mode</span>
+          <div style={{ display: "flex", gap: 4 }}>
+            {["Base", "Bull", "Bear"].map(s => {
+              const isActive = scenario === s;
+              const bg = s === "Bull" ? C.green : s === "Bear" ? C.red : C.blue;
+              return (
+                <button key={s} onClick={() => setScenario(s)}
+                  style={{
+                    background: isActive ? bg : "transparent",
+                    color: isActive ? C.bg : C.t2,
+                    border: isActive ? `1px solid ${bg}` : `1px solid ${C.border}`,
+                    borderRadius: 4, fontSize: 10, fontWeight: 700, padding: "4px 12px",
+                    cursor: "pointer", transition: "all 0.2s ease-in-out",
+                    boxShadow: isActive ? `0 0 8px ${bg}88` : "none"
+                  }}>
+                  {s.toUpperCase()}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Grid: 3 Major Sections */}
@@ -193,28 +317,29 @@ export default function MainDashboard() {
           <h2 style={{ fontSize: 13, fontWeight: 700, color: C.blue, borderBottom: `1px solid ${C.border}`, paddingBottom: 6, marginBottom: 12 }}>🏛️ Fed & Global Macro Matrix</h2>
           
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 14 }}>
-            <StatCard title="Current Fed Rate" val="3.50% - 3.75%" sub="Status: Hold" />
-            <StatCard title="US 10Y Bond" val={`${bondVal}%`} change={live?.us_10y?.change_pct ? `${live.us_10y.change_pct}%` : ""} trend={live?.us_10y?.change_pct > 0 ? "up" : "dn"} sub="Inverted yield curve" />
-            <StatCard title="US Dollar Index" val={dxyVal} change={live?.dxy?.change_pct ? `${live.dxy.change_pct}%` : ""} sub="Global FX Pressure" />
-            <StatCard title="Crude WTI" val={`$${crudeVal}`} change={live?.crude_wti?.change_pct ? `${live.crude_wti.change_pct}%` : ""} sub="Hormuz Geopolitics" />
+            <StatCard title="Current Fed Rate" val={currentData.fedRate} sub={`Status: ${currentData.fedStatus}`} />
+            <StatCard title="US 10Y Bond" val={`${currentData.bondVal}%`} change={currentData.bondChg} trend={currentData.bondTrend} sub="Inverted yield curve" />
+            <StatCard title="US Dollar Index" val={currentData.dxyVal} change={currentData.dxyChg} sub="Global FX Pressure" />
+            <StatCard title="Crude WTI" val={`$${currentData.crudeVal}`} change={currentData.crudeChg} sub="Hormuz Geopolitics" />
           </div>
 
           <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 8, padding: 10, marginBottom: 12 }}>
             <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase", marginBottom: 8 }}>June 16 Decisions CME FedWatch</p>
-            <ProgressBar label="Rate Hike (+25bps)" val={57} max={100} color={C.red} />
-            <ProgressBar label="Rate Hold (No change)" val={43} max={100} color={C.amber} />
-            <p style={{ fontSize: 9, color: C.t3, marginTop: 6 }}>Solid Reason: CPI jumped to 3.8% vs GDP slowdown (2.0%). Warsh wants credibility hawk play.</p>
+            {currentData.cmeWatch.hike > 0 && <ProgressBar label="Rate Hike (+25bps)" val={currentData.cmeWatch.hike} max={100} color={C.red} />}
+            {currentData.cmeWatch.hold > 0 && <ProgressBar label="Rate Hold (No change)" val={currentData.cmeWatch.hold} max={100} color={C.amber} />}
+            {currentData.cmeWatch.cut > 0 && <ProgressBar label="Rate Cut (-25bps)" val={currentData.cmeWatch.cut} max={100} color={C.green} />}
+            <p style={{ fontSize: 9, color: C.t3, marginTop: 6 }}>Solid Reason: {currentData.cmeReason}</p>
           </div>
 
           <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 8, padding: 10 }}>
             <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase", marginBottom: 6 }}>Latest Related Indicators</p>
             <table style={{ width: "100%", fontSize: 10, borderCollapse: "collapse" }}>
               <tbody>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Buffett Indicator</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>237.8% (Significantly Overvalued)</td></tr>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Yield Curve Normalization</td><td style={{ textAlign: "right", fontWeight: 600, color: C.amber }}>+0.47% (Recession Warning: 5-19mo)</td></tr>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Russell 2000 Refi Wall</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>$368B (41% Zombie Companies)</td></tr>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Trump Tariff Factor</td><td style={{ textAlign: "right", fontWeight: 600, color: C.amber }}>Max Tariffs Threat</td></tr>
-                <tr><td style={{ padding: "4px 0", color: C.t3 }}>War Premium</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>Hormuz blockage risk 15%</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Buffett Indicator</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>{currentData.buffett}</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Yield Curve Normalization</td><td style={{ textAlign: "right", fontWeight: 600, color: C.amber }}>{currentData.yieldNorm}</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Russell 2000 Refi Wall</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>{currentData.refiWall}</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>Trump Tariff Factor</td><td style={{ textAlign: "right", fontWeight: 600, color: C.amber }}>{currentData.tariff}</td></tr>
+                <tr><td style={{ padding: "4px 0", color: C.t3 }}>War Premium</td><td style={{ textAlign: "right", fontWeight: 600, color: C.red }}>{currentData.warPremium}</td></tr>
               </tbody>
             </table>
           </div>
@@ -235,31 +360,16 @@ export default function MainDashboard() {
             <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase", marginBottom: 6 }}>Technical Signals</p>
             <table style={{ width: "100%", fontSize: 10, borderCollapse: "collapse" }}>
               <tbody>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>50-day DMA</td><td style={{ textAlign: "right", fontWeight: 600, color: C.green }}>$4,380 (Above DMA)</td></tr>
-                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>200-day DMA</td><td style={{ textAlign: "right", fontWeight: 600, color: C.green }}>$4,150 (Golden Cross)</td></tr>
-                <tr><td style={{ padding: "4px 0", color: C.t3 }}>De-dollarization Trend</td><td style={{ textAlign: "right", fontWeight: 600, color: C.purple }}>Extreme (BRICS buying)</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>50-day DMA</td><td style={{ textAlign: "right", fontWeight: 600, color: C.green }}>{currentData.dma50}</td></tr>
+                <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", color: C.t3 }}>200-day DMA</td><td style={{ textAlign: "right", fontWeight: 600, color: C.green }}>{currentData.dma200}</td></tr>
+                <tr><td style={{ padding: "4px 0", color: C.t3 }}>De-dollarization Trend</td><td style={{ textAlign: "right", fontWeight: 600, color: C.purple }}>{currentData.dedollar}</td></tr>
               </tbody>
             </table>
           </div>
 
           <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 8, padding: 10 }}>
-            {/* Scenario selector */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, background: "rgba(255,255,255,0.02)", padding: "4px 8px", borderRadius: 8, border: `1px solid ${C.border}` }}>
-              <span style={{ fontSize: 9, fontWeight: 700, color: C.t3, textTransform: "uppercase" }}>Scenario</span>
-              <div style={{ display: "flex", gap: 4 }}>
-                {["Base", "Bull", "Bear"].map(s => (
-                  <button key={s} onClick={() => setScenario(s)}
-                    style={{ background: scenario === s ? (s === 'Bull' ? C.green : s === 'Bear' ? C.red : C.t1) : "transparent",
-                      color: scenario === s ? C.bg : C.t2,
-                      border: "none", borderRadius: 4, fontSize: 9, fontWeight: 700, padding: "2px 8px", cursor: "pointer", transition: "all 0.2s" }}>
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-              <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase" }}>Projection Targets</p>
+              <p style={{ fontSize: 10, fontWeight: 700, color: C.t2, textTransform: "uppercase" }}>Projection Targets (2030 Consensus)</p>
               <div style={{ display: "flex", gap: 4 }}>
                 {Object.keys(SCENARIOS[scenario]).map(t => (
                   <button key={t} onClick={() => setProjTab(t)}
@@ -314,11 +424,11 @@ export default function MainDashboard() {
               </tr>
             </thead>
             <tbody>
-              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>NVDA</td><td style={{ textAlign: "right" }}>${nvdaVal}</td><td style={{ textAlign: "right", color: C.red }}>Overvalued</td><td style={{ textAlign: "right", color: C.red }}>Distribution</td></tr>
-              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>MSFT</td><td style={{ textAlign: "right" }}>${msftVal}</td><td style={{ textAlign: "right", color: C.red }}>Overvalued</td><td style={{ textAlign: "right", color: C.red }}>Moving Away</td></tr>
-              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>AAPL</td><td style={{ textAlign: "right" }}>${aaplVal}</td><td style={{ textAlign: "right", color: C.amber }}>Stretched</td><td style={{ textAlign: "right", color: C.amber }}>Neutral</td></tr>
-              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>GOOGL</td><td style={{ textAlign: "right" }}>${googlVal}</td><td style={{ textAlign: "right", color: C.green }}>Fair</td><td style={{ textAlign: "right", color: C.green }}>Adding</td></tr>
-              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>META</td><td style={{ textAlign: "right" }}>${metaVal}</td><td style={{ textAlign: "right", color: C.green }}>Fair</td><td style={{ textAlign: "right", color: C.amber }}>Neutral</td></tr>
+              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>NVDA</td><td style={{ textAlign: "right" }}>${currentData.stocks.nvda.price}</td><td style={{ textAlign: "right", color: currentData.stocks.nvda.valColor }}>{currentData.stocks.nvda.val}</td><td style={{ textAlign: "right", color: currentData.stocks.nvda.flowColor }}>{currentData.stocks.nvda.flow}</td></tr>
+              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>MSFT</td><td style={{ textAlign: "right" }}>${currentData.stocks.msft.price}</td><td style={{ textAlign: "right", color: currentData.stocks.msft.valColor }}>{currentData.stocks.msft.val}</td><td style={{ textAlign: "right", color: currentData.stocks.msft.flowColor }}>{currentData.stocks.msft.flow}</td></tr>
+              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>AAPL</td><td style={{ textAlign: "right" }}>${currentData.stocks.aapl.price}</td><td style={{ textAlign: "right", color: currentData.stocks.aapl.valColor }}>{currentData.stocks.aapl.val}</td><td style={{ textAlign: "right", color: currentData.stocks.aapl.flowColor }}>{currentData.stocks.aapl.flow}</td></tr>
+              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>GOOGL</td><td style={{ textAlign: "right" }}>${currentData.stocks.googl.price}</td><td style={{ textAlign: "right", color: currentData.stocks.googl.valColor }}>{currentData.stocks.googl.val}</td><td style={{ textAlign: "right", color: currentData.stocks.googl.flowColor }}>{currentData.stocks.googl.flow}</td></tr>
+              <tr style={{ borderBottom: `1px solid ${C.border}` }}><td style={{ padding: "4px 0", fontWeight: 600 }}>META</td><td style={{ textAlign: "right" }}>${currentData.stocks.meta.price}</td><td style={{ textAlign: "right", color: currentData.stocks.meta.valColor }}>{currentData.stocks.meta.val}</td><td style={{ textAlign: "right", color: currentData.stocks.meta.flowColor }}>{currentData.stocks.meta.flow}</td></tr>
             </tbody>
           </table>
 
