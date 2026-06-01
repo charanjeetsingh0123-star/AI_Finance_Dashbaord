@@ -154,15 +154,6 @@
       <nav id="nav-tabs"></nav>
       <div id="root"><div id="loading">Select a dashboard…</div></div>
     </div>
-
-    <!-- RIGHT: News Panel -->
-    <div id="news-panel">
-      <div class="news-header">
-        <h3>📰 Live News</h3>
-        <span id="news-updated">—</span>
-      </div>
-      <div id="news-list"><div class="news-empty">Fetching headlines…</div></div>
-    </div>
   </div>
 
   <script>
@@ -242,38 +233,8 @@
     function forceRefresh() {
       fetch('/api/refresh').then(()=>{
         setTimeout(fetchTicker, 3000);
-        setTimeout(fetchNews, 3000);
       });
     }
-
-    // ═══════════════════════════════════════════
-    // NEWS PANEL — auto-refresh every 5 min
-    // ═══════════════════════════════════════════
-    function fetchNews() {
-      window.smartFetch('/api/news').then(r=>r.json()).then(data => {
-        const list = document.getElementById('news-list');
-        const upd = document.getElementById('news-updated');
-        if (!data || !data.items || data.items.length === 0) {
-          list.innerHTML = '<div class="news-empty">No news yet…</div>';
-          return;
-        }
-        upd.textContent = data.updated_at || '';
-        let html = '';
-        data.items.forEach(item => {
-          html += `<div class="news-item" onclick="window.open('${item.link}','_blank')">
-            <div class="news-title">${item.title}</div>
-            <div class="news-meta">
-              <span>${item.source}</span>
-              <span>${item.published}</span>
-              <span class="news-tag">${item.query}</span>
-            </div>
-          </div>`;
-        });
-        list.innerHTML = html;
-      }).catch(()=>{});
-    }
-    fetchNews();
-    setInterval(fetchNews, 300000);
 
     // ═══════════════════════════════════════════
     // DASHBOARD TABS — same as before
