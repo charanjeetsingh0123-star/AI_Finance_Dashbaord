@@ -7,14 +7,14 @@
       "change_pct": 0.0
     },
     "silver_usd": {
-      "value": 75.54,
-      "prev": 75.54,
+      "value": 75.45,
+      "prev": 75.45,
       "change": 0.0,
       "change_pct": 0.0
     },
     "crude_wti": {
-      "value": 92.59,
-      "prev": 92.59,
+      "value": 92.39,
+      "prev": 92.39,
       "change": 0.0,
       "change_pct": 0.0
     },
@@ -37,8 +37,8 @@
       "change_pct": -1.11
     },
     "dxy": {
-      "value": 99.18,
-      "prev": 99.18,
+      "value": 99.19,
+      "prev": 99.19,
       "change": 0.0,
       "change_pct": 0.0
     },
@@ -49,55 +49,55 @@
       "change_pct": 0.49
     },
     "sp500": {
-      "value": 7613.95,
+      "value": 7611.93,
       "prev": 7580.06,
-      "change": 33.89,
-      "change_pct": 0.45
+      "change": 31.87,
+      "change_pct": 0.42
     },
     "btc_usd": {
-      "value": 71368.0,
+      "value": 71336.0,
       "prev": 73579.69,
-      "change": -2211.69,
-      "change_pct": -3.01
+      "change": -2243.69,
+      "change_pct": -3.05
     },
     "nasdaq": {
-      "value": 27168.32,
+      "value": 27164.96,
       "prev": 26972.62,
-      "change": 195.71,
-      "change_pct": 0.73
+      "change": 192.35,
+      "change_pct": 0.71
     },
     "nvda": {
-      "value": 224.45,
+      "value": 224.7,
       "prev": 211.14,
-      "change": 13.31,
-      "change_pct": 6.3
+      "change": 13.56,
+      "change_pct": 6.42
     },
     "msft": {
-      "value": 461.92,
+      "value": 462.36,
       "prev": 450.24,
-      "change": 11.68,
-      "change_pct": 2.59
+      "change": 12.12,
+      "change_pct": 2.69
     },
     "aapl": {
-      "value": 307.68,
+      "value": 307.55,
       "prev": 312.06,
-      "change": -4.38,
-      "change_pct": -1.4
+      "change": -4.51,
+      "change_pct": -1.45
     },
     "googl": {
-      "value": 378.24,
+      "value": 377.67,
       "prev": 380.34,
-      "change": -2.1,
-      "change_pct": -0.55
+      "change": -2.67,
+      "change_pct": -0.7
     },
     "meta": {
-      "value": 607.05,
+      "value": 606.65,
       "prev": 632.51,
-      "change": -25.46,
-      "change_pct": -4.03
+      "change": -25.86,
+      "change_pct": -4.09
     },
     "gold_silver_ratio": {
-      "value": 59.8,
+      "value": 59.87,
       "label": "Gold/Silver Ratio"
     },
     "nifty_gold_ratio": {
@@ -109,6 +109,6 @@
       "label": "Gold ₹/gram"
     }
   },
-  "updated_at": "2026-06-02 00:34:39 IST",
+  "updated_at": "2026-06-02 00:45:05 IST",
   "source": "Yahoo Finance"
 }

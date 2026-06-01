@@ -1,6 +1,33 @@
 {
   "items": [
     {
+      "title": "Veteran analyst predicts rare opportunity before next Bitcoin rally",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/veteran-analyst-predicts-rare-opportunity-191000066.html",
+      "source": "TheStreet",
+      "published": "Jun 01, 19:10",
+      "timestamp": 1780341000.0,
+      "query": "Bitcoin",
+      "summary": "Institutions have been pulling money out of Bitcoin for nine straight days. A veteran analyst thinks that is exactly when you should be paying attention. Spot Bitcoin ETFs recorded about $2.8 billion "
+    },
+    {
+      "title": "SpaceX IPO: 5 Surprising Facts Just Revealed",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/spacex-ipo-5-surprising-facts-190900266.html",
+      "source": "Motley Fool",
+      "published": "Jun 01, 19:09",
+      "timestamp": 1780340940.0,
+      "query": "S&P 500",
+      "summary": "SpaceX just filed its S-1 ahead of what could be the largest IPO in history."
+    },
+    {
+      "title": "The Hanover Insurance Group (THG): Buy, Sell, or Hold Post Q1 Earnings?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/hanover-insurance-group-thg-buy-185651696.html",
+      "source": "StockStory",
+      "published": "Jun 01, 18:56",
+      "timestamp": 1780340211.0,
+      "query": "S&P 500",
+      "summary": "The Hanover Insurance Group has been treading water for the past six months, holding steady at $186.29. The stock also fell short of the S&P 500’s 10.9% gain during that period."
+    },
+    {
       "title": "B&G Foods (BGS): Buy, Sell, or Hold Post Q1 Earnings?",
       "link": "https://finance.yahoo.com/markets/stocks/articles/b-g-foods-bgs-buy-184851335.html",
       "source": "StockStory",
@@ -17,15 +44,6 @@
       "timestamp": 1780339314.0,
       "query": "S&P 500",
       "summary": "By Stephen Culp and Medha Singh NEW YORK, June 1 (Reuters) - Wall Street stocks began the new week and month with modest gains amid rapid developments in U.S.-Iran peace negotiations and the unveiling"
-    },
-    {
-      "title": "3 Reasons to Sell FLG and 1 Stock to Buy Instead",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-sell-flg-1-184051998.html",
-      "source": "StockStory",
-      "published": "Jun 01, 18:40",
-      "timestamp": 1780339251.0,
-      "query": "S&P 500",
-      "summary": "Flagstar Financial has followed the market’s trajectory closely, rising in tandem with the S&P 500 over the past six months. The stock has climbed by 13.3% to $14.06 per share while the index has gain"
     },
     {
       "title": "Strategy sells bitcoin for first time since 2022",
@@ -46,15 +64,6 @@
       "summary": "WWDC may give investors a clearer view of whether Apple can turn AI into a stronger growth story."
     },
     {
-      "title": "3 Reasons GH is Risky and 1 Stock to Buy Instead",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/3-reasons-gh-risky-1-183251924.html",
-      "source": "StockStory",
-      "published": "Jun 01, 18:32",
-      "timestamp": 1780338771.0,
-      "query": "S&P 500",
-      "summary": "Over the past six months, Guardant Health has been a great trade, beating the S&P 500 by 11.7%. Its stock price has climbed to $129.08, representing a healthy 22.7% increase. This was partly thanks to"
-    },
-    {
       "title": "Jim Cramer sends harsh message on Saylor's Bitcoin sale",
       "link": "https://finance.yahoo.com/markets/crypto/articles/jim-cramer-sends-harsh-message-183000174.html",
       "source": "TheStreet",
@@ -62,24 +71,6 @@
       "timestamp": 1780338600.0,
       "query": "Bitcoin",
       "summary": "Michael Saylor just backtracked from his \"never sell your Bitcoin\" stance, and the markets noticed. On May 31, Saylor made his famous \"orange dot\" post on X, which usually shows up right before announ"
-    },
-    {
-      "title": "Strategy Sells Bitcoin for First Time Since 2022, Triggering $15M Polymarket Dispute",
-      "link": "https://finance.yahoo.com/markets/crypto/articles/strategy-sells-bitcoin-first-time-182749113.html",
-      "source": "CCN",
-      "published": "Jun 01, 18:27",
-      "timestamp": 1780338469.0,
-      "query": "Bitcoin",
-      "summary": "Strategy sold 32 BTC (~$2.5M) to help fund preferred stock dividend payments. The sale represented just 0.004% of its 843,706 BTC holdings and was made ..."
-    },
-    {
-      "title": "Google's parent company wants to set loose 32 million lab-bred mosquitoes in America — and time is running out to object",
-      "link": "https://finance.yahoo.com/sectors/healthcare/articles/googles-parent-company-wants-set-182500810.html",
-      "source": "Moneywise",
-      "published": "Jun 01, 18:25",
-      "timestamp": 1780338300.0,
-      "query": "Google",
-      "summary": "Alphabet is seeking federal approval to release up to 32 million treated mosquitoes across California and Florida to curb the spread of mosquito-borne diseases. Here’s why — and what to consider."
     },
     {
       "title": "Equities Mostly Rise Intraday Amid Nvidia Rally; Oil Jumps",
@@ -100,24 +91,6 @@
       "summary": "Nvidia CEO Jensen Huang introduces the new RTX Spark laptop lineup powered by the Blackwell RTX GPU. This is a major collaboration with Microsoft and other industry partners to reinvent the personal c"
     },
     {
-      "title": "'You can hear me now or pay me later': CEO claps back at college grads who boo him for mentioning AI",
-      "link": "https://finance.yahoo.com/sectors/technology/articles/hear-now-pay-later-ceo-181500467.html",
-      "source": "Moneywise",
-      "published": "Jun 01, 18:15",
-      "timestamp": 1780337700.0,
-      "query": "Google",
-      "summary": "Big Machine Records founder Scott Borchetta got an earful from the 2026 graduating class, but he didn't back down."
-    },
-    {
-      "title": "Anthropic Files Confidential S-1 as $1 Trillion IPO Window Opens",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/anthropic-files-confidential-1-1-181246257.html",
-      "source": "GuruFocus.com",
-      "published": "Jun 01, 18:12",
-      "timestamp": 1780337566.0,
-      "query": "Google",
-      "summary": "The filing follows a $965 billion Series H valuation."
-    },
-    {
       "title": "Top Midday Decliners",
       "link": "https://finance.yahoo.com/markets/stocks/articles/top-midday-decliners-175530810.html",
       "source": "MT Newswires",
@@ -125,15 +98,6 @@
       "timestamp": 1780336530.0,
       "query": "Microsoft",
       "summary": "Constellation Energy (CEG) priced an underwritten secondary offering of 11 million shares at $281 ap"
-    },
-    {
-      "title": "Market Chatter: Amazon, Microsoft, Google May Face Curbs Under EU Cloud Proposal",
-      "link": "https://finance.yahoo.com/sectors/technology/articles/market-chatter-amazon-microsoft-google-174906906.html",
-      "source": "MT Newswires",
-      "published": "Jun 01, 17:49",
-      "timestamp": 1780336146.0,
-      "query": "Google",
-      "summary": "Amazon.com (AMZN), Microsoft (MSFT) and Alphabet's (GOOG, GOOGL) Google may be excluded from critica"
     },
     {
       "title": "Zigging when most are zagging, ex-Meta CTO raises $250M climate fund",
@@ -269,8 +233,44 @@
       "timestamp": 1780315313.0,
       "query": "gold price",
       "summary": "Gold (GC=F) June futures opened at $4,575.20 per troy ounce on Monday, down 0.4% from the previous closing price on Friday of $4,593. Gold moved slightly lower in early trading, falling to $4,537.90 b"
+    },
+    {
+      "title": "Silver prices today, Monday, June 1, 2026: Price moving upward this morning",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-monday-june-1-2026-price-moving-upward-this-morning-113559041.html",
+      "source": "Yahoo Personal Finance",
+      "published": "Jun 01, 11:35",
+      "timestamp": 1780313759.0,
+      "query": "silver price",
+      "summary": "Silver July futures opened at $74.10 per ounce on Monday, June 1, 2026, 2.3% lower than the previous closing price on Friday. However, the price of silver moved upward in early trading to $75.92 by 7:"
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500, Nasdaq rise as oil trims gains on renewed US-Iran deal optimism",
+      "link": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-monday-june-1-dow-sp-nasdaq-waver-225422932.html",
+      "source": "Yahoo Finance",
+      "published": "May 31, 22:54",
+      "timestamp": 1780268062.0,
+      "query": "crude oil",
+      "summary": "US stocks slipped early Monday as investors eyed US-Iran peace talks and Nvidia's (NVDA) new laptop chip as markets faltered after reaching record highs in May."
+    },
+    {
+      "title": "India's fifth spot in global market cap list under threat as Taiwan closes in",
+      "link": "https://finance.yahoo.com/news/indias-fifth-spot-global-market-113827175.html",
+      "source": "Reuters",
+      "published": "May 26, 11:38",
+      "timestamp": 1779795507.0,
+      "query": "Nifty 50",
+      "summary": "By Bharath Rajeswaran and Vivek Kumar M May 26 (Reuters) - India's position as the fifth-largest global market by capitalisation is under threat as Taiwan closes in on the South Asian nation's spot,"
+    },
+    {
+      "title": "Indian shares end flat as financials offset IT rally",
+      "link": "https://finance.yahoo.com/news/indian-shares-open-tad-higher-024142228.html",
+      "source": "Reuters",
+      "published": "May 19, 10:16",
+      "timestamp": 1779185817.0,
+      "query": "Nifty 50",
+      "summary": "By Vivek Kumar M May 19 (Reuters) - Indian shares ended little changed on Tuesday, as gains in information technology stocks driven by a stronger dollar were offset by losses in banks, while investors"
     }
   ],
-  "updated_at": "2026-06-02 00:35:33 IST",
+  "updated_at": "2026-06-02 00:45:16 IST",
   "count": 30
 }
