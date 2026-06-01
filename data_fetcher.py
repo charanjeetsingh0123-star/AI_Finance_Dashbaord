@@ -79,33 +79,27 @@ def fetch_prices():
         print("[WARN] yfinance not installed. Run: pip3 install yfinance")
         return False
 
-    print(f"[{_now_ist()}] Fetching live prices...")
+    print(f"[{_now_ist()}] Fetching live prices via fast_info...")
     try:
-        symbols = list(TICKERS.values())
-        data = yf.download(symbols, period="2d", interval="1d", progress=False, threads=True)
-
         prices = {}
         for key, ticker in TICKERS.items():
             try:
-                close_col = ("Close", ticker) if isinstance(data.columns, type(data.columns)) else "Close"
-                if ("Close", ticker) in data.columns:
-                    vals = data[("Close", ticker)].dropna()
-                elif "Close" in data.columns:
-                    vals = data["Close"].dropna()
-                else:
-                    vals = None
-
-                if vals is not None and len(vals) > 0:
-                    current = float(vals.iloc[-1])
-                    prev = float(vals.iloc[-2]) if len(vals) > 1 else current
-                    change = current - prev
-                    change_pct = (change / prev * 100) if prev != 0 else 0
-                    prices[key] = {
-                        "value": round(current, 2),
-                        "prev": round(prev, 2),
-                        "change": round(change, 2),
-                        "change_pct": round(change_pct, 2),
-                    }
+                tk = yf.Ticker(ticker)
+                info = tk.fast_info
+                current = float(info.last_price)
+                prev = float(info.previous_close)
+                
+                if current is None or prev is None or current == 0:
+                    continue
+                    
+                change = current - prev
+                change_pct = (change / prev * 100) if prev != 0 else 0
+                prices[key] = {
+                    "value": round(current, 2),
+                    "prev": round(prev, 2),
+                    "change": round(change, 2),
+                    "change_pct": round(change_pct, 2),
+                }
             except Exception as e:
                 print(f"  [WARN] {key}/{ticker}: {e}")
 
